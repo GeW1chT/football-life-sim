@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Life Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Football Life Simulator</h1>
+        <div class="player-info">
+            <h2>Player Info</h2>
+            <p><strong>Name:</strong> <span id="playerName"></span></p>
+            <p><strong>Age:</strong> <span id="playerAge"></span></p>
+            <p><strong>Team:</strong> <span id="playerTeam"></span></p>
+            <p><strong>Position:</strong> <span id="playerPosition"></span></p>
+            <p><strong>Reputation:</strong> <span id="playerReputation"></span></p>
+        </div>
+
+        <div class="player-stats">
+            <h2>Player Stats</h2>
+            <ul>
+                <li><strong>Speed:</strong> <span id="statSpeed"></span></li>
+                <li><strong>Shooting:</strong> <span id="statShooting"></span></li>
+                <li><strong>Passing:</strong> <span id="statPassing"></span></li>
+                <li><strong>Defense:</strong> <span id="statDefense"></span></li>
+                <li><strong>Stamina:</strong> <span id="statStamina"></span></li>
+            </ul>
+        </div>
+        
+        <div class="game-actions">
+            <button id="nextWeekBtn">Next Week</button>
+            <button id="transferMarketBtn">Transfer Market</button>
+            <button id="trainingBtn">Training</button>
+        </div>
+    </div>
+    
+    <script src="renderer.js"></script>
+</body>
+</html>

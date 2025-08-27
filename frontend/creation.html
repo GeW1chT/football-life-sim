@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Player</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Create Your Player</h1>
+        <div class="player-creation-form">
+            <div class="form-group">
+                <label for="playerNameInput">Player Name:</label>
+                <input type="text" id="playerNameInput" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="playerPositionSelect">Position:</label>
+                <select id="playerPositionSelect">
+                    <option value="GK">Goalkeeper</option>
+                    <option value="DEF">Defender</option>
+                    <option value="MID">Midfielder</option>
+                    <option value="FWD">Forward</option>
+                </select>
+            </div>
+            <button id="createPlayerBtn">Start Your Career!</button>
+        </div>
+    </div>
+    
+    <script src="creation.js"></script>
+</body>
+</html>

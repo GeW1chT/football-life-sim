@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "AI Player 1",
+    "position": "FWD",
+    "stats": {
+      "shooting": 80
+    }
+  },
+  {
+    "id": 2,
+    "name": "AI Player 2",
+    "position": "DEF",
+    "stats": {
+      "defense": 85
+    }
+  }
+]

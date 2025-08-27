@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Team Alpha",
+    "power": 85
+  },
+  {
+    "id": 2,
+    "name": "Team Beta",
+    "power": 78
+  },
+  {
+    "id": 3,
+    "name": "Team Gamma",
+    "power": 92
+  }
+]
