@@ -1,17 +1,22 @@
 [
   {
-    "id": 1,
-    "name": "Team Alpha",
-    "power": 85
+    "name": "Eagles FC",
+    "power": 75,
+    "players": []
   },
   {
-    "id": 2,
-    "name": "Team Beta",
-    "power": 78
+    "name": "Panthers United",
+    "power": 80,
+    "players": []
   },
   {
-    "id": 3,
-    "name": "Team Gamma",
-    "power": 92
+    "name": "Lions City",
+    "power": 85,
+    "players": []
+  },
+  {
+    "name": "Titans FC",
+    "power": 70,
+    "players": []
   }
 ]

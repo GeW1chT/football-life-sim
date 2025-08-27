@@ -46,7 +46,6 @@ ipcMain.handle('get-player-info', async (event) => {
     return gameState.player;
 });
 
-// `next-week` artık bir medya olayı varsa döndürecek
 ipcMain.handle('next-week', async (event) => {
     gameState.nextWeek();
     return {
@@ -85,7 +84,11 @@ ipcMain.handle('reject-offer', async (event, offerId) => {
     return true;
 });
 
-// Yeni eklenen handler: Medya olayını yönetir
 ipcMain.handle('handle-media-event', async (event, choice) => {
     return gameState.handleMediaEvent(choice);
+});
+
+// Yeni eklenen handler: Lig sıralamasını döndürür
+ipcMain.handle('get-league-rankings', async (event) => {
+    return gameState.getLeagueRankings();
 });

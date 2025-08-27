@@ -25,6 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('transferMarketBtn').addEventListener('click', async () => {
         window.location.href = 'transfer-market.html';
     });
+    
+    // Yeni eklenen buton için olay dinleyicisi
+    document.getElementById('leagueTableBtn').addEventListener('click', async () => {
+        window.location.href = 'league-table.html';
+    });
 });
 
 /**
