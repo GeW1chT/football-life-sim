@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Life - Football Life Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <div class="dashboard-container personal-life-dashboard">
+        <div class="dashboard-header">
+            <h1>🏠 Personal Life</h1>
+            <button id="backBtn" class="back-button">
+                <span class="btn-icon">←</span>
+                <span class="btn-text">Back to Dashboard</span>
+            </button>
+        </div>
+
+        <!-- Lifestyle Overview -->
+        <div class="analytics-section">
+            <h2>😊 Lifestyle Overview</h2>
+            <div class="lifestyle-metrics-grid">
+                <div class="lifestyle-metric happiness">
+                    <div class="metric-icon">😊</div>
+                    <div class="metric-content">
+                        <h3 id="happinessLevel">70%</h3>
+                        <p>Happiness</p>
+                        <div class="metric-bar">
+                            <div class="metric-fill happiness-fill" id="happinessBar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lifestyle-metric stress">
+                    <div class="metric-icon">😰</div>
+                    <div class="metric-content">
+                        <h3 id="stressLevel">30%</h3>
+                        <p>Stress</p>
+                        <div class="metric-bar">
+                            <div class="metric-fill stress-fill" id="stressBar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lifestyle-metric energy">
+                    <div class="metric-icon">⚡</div>
+                    <div class="metric-content">
+                        <h3 id="energyLevel">80%</h3>
+                        <p>Energy</p>
+                        <div class="metric-bar">
+                            <div class="metric-fill energy-fill" id="energyBar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lifestyle-metric luxury">
+                    <div class="metric-icon">💎</div>
+                    <div class="metric-content">
+                        <h3 id="luxuryLevel">20%</h3>
+                        <p>Luxury</p>
+                        <div class="metric-bar">
+                            <div class="metric-fill luxury-fill" id="luxuryBar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lifestyle-summary">
+                <div class="net-worth-card">
+                    <h3>💰 Net Worth</h3>
+                    <div class="net-worth-amount" id="netWorth">€0</div>
+                    <div class="monthly-expenses">Monthly Expenses: <span id="monthlyExpenses">€0</span></div>
+                </div>
+                <div class="performance-impact-card">
+                    <h3>⚽ Performance Impact</h3>
+                    <div class="impact-metrics" id="performanceImpact">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Real Estate -->
+        <div class="analytics-section">
+            <h2>🏡 Real Estate</h2>
+            <div class="property-section">
+                <div class="section-header">
+                    <h3>Your Properties</h3>
+                    <div class="property-count">Owned: <span id="ownedPropertiesCount">0</span></div>
+                </div>
+                <div class="owned-properties" id="ownedProperties">
+                    <div class="no-properties-message" id="noPropertiesMessage">
+                        <div class="empty-state">
+                            <div class="empty-icon">🏠</div>
+                            <h3>No Properties Owned</h3>
+                            <p>Purchase your first property to start building your real estate portfolio.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-header">
+                    <h3>Available Properties</h3>
+                    <button class="refresh-btn" onclick="refreshProperties()">
+                        <span class="btn-icon">🔄</span>
+                        <span class="btn-text">Refresh</span>
+                    </button>
+                </div>
+                <div class="available-properties" id="availableProperties">
+                    <!-- Properties will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Vehicles -->
+        <div class="analytics-section">
+            <h2>🚗 Vehicles</h2>
+            <div class="vehicle-section">
+                <div class="section-header">
+                    <h3>Your Garage</h3>
+                    <div class="vehicle-count">Owned: <span id="ownedVehiclesCount">0</span></div>
+                </div>
+                <div class="owned-vehicles" id="ownedVehicles">
+                    <div class="no-vehicles-message" id="noVehiclesMessage">
+                        <div class="empty-state">
+                            <div class="empty-icon">🚗</div>
+                            <h3>No Vehicles Owned</h3>
+                            <p>Purchase your first vehicle to start your collection.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-header">
+                    <h3>Available Vehicles</h3>
+                    <button class="refresh-btn" onclick="refreshVehicles()">
+                        <span class="btn-icon">🔄</span>
+                        <span class="btn-text">Refresh</span>
+                    </button>
+                </div>
+                <div class="available-vehicles" id="availableVehicles">
+                    <!-- Vehicles will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Nightlife & Entertainment -->
+        <div class="analytics-section">
+            <h2>🌙 Nightlife & Entertainment</h2>
+            <div class="nightlife-grid">
+                <div class="activity-category">
+                    <h3>🍷 Nightlife</h3>
+                    <div class="activity-list" id="nightlifeActivities">
+                        <!-- Activities will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="activity-category">
+                    <h3>🎭 Entertainment</h3>
+                    <div class="activity-list" id="entertainmentActivities">
+                        <!-- Activities will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shopping -->
+        <div class="analytics-section">
+            <h2>🛍️ Shopping</h2>
+            <div class="shopping-tabs">
+                <button class="tab-btn active" onclick="switchShoppingTab('clothing')">👔 Clothing</button>
+                <button class="tab-btn" onclick="switchShoppingTab('accessories')">💎 Accessories</button>
+                <button class="tab-btn" onclick="switchShoppingTab('electronics')">📱 Electronics</button>
+                <button class="tab-btn" onclick="switchShoppingTab('inventory')">📦 Inventory</button>
+            </div>
+            
+            <div class="shopping-content">
+                <div class="shopping-category active" id="clothing">
+                    <!-- Clothing items will be populated by JavaScript -->
+                </div>
+                <div class="shopping-category" id="accessories">
+                    <!-- Accessory items will be populated by JavaScript -->
+                </div>
+                <div class="shopping-category" id="electronics">
+                    <!-- Electronic items will be populated by JavaScript -->
+                </div>
+                <div class="shopping-category" id="inventory">
+                    <div class="inventory-list" id="inventoryList">
+                        <!-- Owned items will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Investments -->
+        <div class="analytics-section">
+            <h2>📈 Investments</h2>
+            <div class="investment-section">
+                <div class="section-header">
+                    <h3>Your Portfolio</h3>
+                    <div class="portfolio-value">Total Value: <span id="portfolioValue">€0</span></div>
+                </div>
+                <div class="investment-portfolio" id="investmentPortfolio">
+                    <div class="no-investments-message" id="noInvestmentsMessage">
+                        <div class="empty-state">
+                            <div class="empty-icon">📈</div>
+                            <h3>No Investments</h3>
+                            <p>Start investing to grow your wealth over time.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-header">
+                    <h3>Available Investments</h3>
+                    <button class="refresh-btn" onclick="refreshInvestments()">
+                        <span class="btn-icon">🔄</span>
+                        <span class="btn-text">Refresh</span>
+                    </button>
+                </div>
+                <div class="available-investments" id="availableInvestments">
+                    <!-- Investments will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Purchase Confirmation Modal -->
+    <div id="purchaseModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="purchaseModalTitle">Confirm Purchase</h2>
+                <button class="close-btn" onclick="closePurchaseModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="purchase-details" id="purchaseDetails">
+                    <!-- Purchase details will be populated when modal opens -->
+                </div>
+                <div class="purchase-actions">
+                    <button class="cancel-btn" onclick="closePurchaseModal()">Cancel</button>
+                    <button class="confirm-purchase-btn" onclick="confirmPurchase()" id="confirmPurchaseBtn">
+                        <span class="btn-icon">💰</span>
+                        <span class="btn-text">Purchase</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Activity Modal -->
+    <div id="activityModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="activityModalTitle">Activity</h2>
+                <button class="close-btn" onclick="closeActivityModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="activity-details" id="activityDetails">
+                    <!-- Activity details will be populated when modal opens -->
+                </div>
+                <div class="activity-actions">
+                    <button class="cancel-btn" onclick="closeActivityModal()">Cancel</button>
+                    <button class="start-activity-btn" onclick="startActivity()" id="startActivityBtn">
+                        <span class="btn-icon">🎉</span>
+                        <span class="btn-text">Start Activity</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="personalLife.js"></script>
+</body>
+</html>

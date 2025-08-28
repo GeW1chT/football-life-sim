@@ -3,27 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Your Player</title>
+    <title>Create Your Player - Football Life Simulator</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
-    <div class="dashboard-container">
-        <h1>Create Your Player</h1>
+    <div class="dashboard-container creation-dashboard">
+        <div class="creation-header">
+            <h1>⚽ Create Your Football Career</h1>
+            <p>Shape your destiny as a professional footballer</p>
+        </div>
+        
         <div class="player-creation-form">
-            <div class="form-group">
-                <label for="playerNameInput">Player Name:</label>
-                <input type="text" id="playerNameInput" placeholder="Enter your name">
+            <!-- Personal Information -->
+            <div class="creation-section">
+                <h2>👤 Personal Information</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="playerNameInput">Player Name:</label>
+                        <input type="text" id="playerNameInput" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="playerAgeInput">Starting Age:</label>
+                        <select id="playerAgeInput">
+                            <option value="16">16 years old</option>
+                            <option value="17">17 years old</option>
+                            <option value="18" selected>18 years old</option>
+                            <option value="19">19 years old</option>
+                            <option value="20">20 years old</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="playerNationalitySelect">Nationality:</label>
+                        <select id="playerNationalitySelect" onchange="updateLeagueOptions()">
+                            <option value="">Choose your country...</option>
+                            <!-- Will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="playerPositionSelect">Position:</label>
+                        <select id="playerPositionSelect">
+                            <option value="GK">🥅 Goalkeeper</option>
+                            <option value="DEF">🛡️ Defender</option>
+                            <option value="MID" selected>⚽ Midfielder</option>
+                            <option value="FWD">🎯 Forward</option>
+                        </select>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="playerPositionSelect">Position:</label>
-                <select id="playerPositionSelect">
-                    <option value="GK">Goalkeeper</option>
-                    <option value="DEF">Defender</option>
-                    <option value="MID">Midfielder</option>
-                    <option value="FWD">Forward</option>
-                </select>
+            
+            <!-- Career Path -->
+            <div class="creation-section">
+                <h2>🏆 Career Path</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="startingLeagueSelect">Starting League:</label>
+                        <select id="startingLeagueSelect" onchange="updateTeamOptions()">
+                            <option value="">Choose a league...</option>
+                            <!-- Will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="startingTeamSelect">Preferred Team:</label>
+                        <select id="startingTeamSelect">
+                            <option value="random">🎲 Random Team</option>
+                            <!-- Will be populated by JavaScript -->
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="career-ambition">
+                    <label for="careerAmbitionSelect">Career Ambition:</label>
+                    <select id="careerAmbitionSelect">
+                        <option value="balanced">🎯 Balanced Career</option>
+                        <option value="money">💰 Money Focused</option>
+                        <option value="trophies">🏆 Trophy Hunter</option>
+                        <option value="legendary">⭐ Become a Legend</option>
+                    </select>
+                    <div class="ambition-description" id="ambitionDescription">
+                        Choose your career focus to shape your journey
+                    </div>
+                </div>
             </div>
-            <button id="createPlayerBtn">Start Your Career!</button>
+            
+            <!-- Starting Attributes -->
+            <div class="creation-section">
+                <h2>⚡ Starting Attributes</h2>
+                <div class="attributes-info">
+                    <p>Your attributes will be generated based on your position and age. You'll have <span id="skillPoints">15</span> skill points to distribute.</p>
+                </div>
+                
+                <div class="attribute-sliders" id="attributeSliders">
+                    <!-- Will be populated by JavaScript based on position -->
+                </div>
+            </div>
+            
+            <!-- Player Preview -->
+            <div class="creation-section">
+                <h2>👀 Player Preview</h2>
+                <div class="player-preview-card">
+                    <div class="preview-header">
+                        <h3 id="previewName">Your Name</h3>
+                        <div class="preview-details">
+                            <span id="previewAge">18</span> years old • 
+                            <span id="previewNationality">Country</span> • 
+                            <span id="previewPosition">Midfielder</span>
+                        </span>
+                    </div>
+                    <div class="preview-career">
+                        <div class="preview-item">
+                            <span class="preview-label">League:</span>
+                            <span id="previewLeague">Choose a league</span>
+                        </div>
+                        <div class="preview-item">
+                            <span class="preview-label">Team:</span>
+                            <span id="previewTeam">Choose a team</span>
+                        </div>
+                        <div class="preview-item">
+                            <span class="preview-label">Ambition:</span>
+                            <span id="previewAmbition">Balanced Career</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="creation-actions">
+                <button id="createPlayerBtn" class="create-career-btn" disabled>
+                    <span class="btn-icon">🚀</span>
+                    <span class="btn-text">Start My Career!</span>
+                </button>
+            </div>
         </div>
     </div>
     

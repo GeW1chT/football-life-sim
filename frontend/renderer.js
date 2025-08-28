@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize UI animations
     initializeAnimations();
     
+    // Initialize language system
+    initializeLanguageSystem();
+    
     // Load player data with loading animation
     loadPlayerData();
 
@@ -14,23 +17,22 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * Initialize loading animations and transitions
+ * Initialize loading animations and transitions - Optimized
  */
 function initializeAnimations() {
     // Add loading class to elements
     const loadingElements = document.querySelectorAll('#playerName, #playerAge, #playerTeam, #playerPosition, #playerReputation');
     loadingElements.forEach(el => el.classList.add('loading'));
     
-    // Animate dashboard container entrance
+    // Simple dashboard entrance animation
     const dashboard = document.querySelector('.dashboard-container');
     dashboard.style.opacity = '0';
-    dashboard.style.transform = 'translateY(30px)';
     
-    setTimeout(() => {
-        dashboard.style.transition = 'all 0.8s ease';
+    // Use requestAnimationFrame for better performance
+    requestAnimationFrame(() => {
+        dashboard.style.transition = 'opacity 0.5s ease';
         dashboard.style.opacity = '1';
-        dashboard.style.transform = 'translateY(0)';
-    }, 100);
+    });
 }
 
 /**
@@ -62,12 +64,23 @@ async function loadPlayerData() {
 function setupEventListeners() {
     document.getElementById('nextWeekBtn').addEventListener('click', async (e) => {
         await handleButtonClick(e, async () => {
-            const { hasMediaEvent } = await window.footballAPI.nextWeek();
-            
-            if (hasMediaEvent) {
-                navigateWithTransition('media-event.html');
-            } else {
-                navigateWithTransition('match.html');
+            try {
+                console.log('Next Week button clicked');
+                const response = await window.footballAPI.nextWeek();
+                console.log('Next Week response:', response);
+                
+                // Reload the player data to reflect changes
+                await loadPlayerData();
+                
+                if (response && response.hasMediaEvent) {
+                    navigateWithTransition('media-event.html');
+                } else {
+                    // Show a success message and stay on the dashboard
+                    showSuccessMessage('Week completed successfully! Player stats updated.');
+                }
+            } catch (error) {
+                console.error('Error processing next week:', error);
+                showErrorMessage('Failed to process next week. Please try again.');
             }
         });
     });
@@ -100,83 +113,86 @@ function setupEventListeners() {
         });
     }
     
-    const staffBtn = document.getElementById('staffBtn');
-    if (staffBtn) {
-        staffBtn.addEventListener('click', async (e) => {
+    const staffManagementBtn = document.getElementById('staffManagementBtn');
+    if (staffManagementBtn) {
+        staffManagementBtn.addEventListener('click', async (e) => {
+            await handleButtonClick(e, () => {
+                navigateWithTransition('staff.html');
+            });
+        });
+    }
+    
+    const facilityManagementBtn = document.getElementById('facilityManagementBtn');
+    if (facilityManagementBtn) {
+        facilityManagementBtn.addEventListener('click', async (e) => {
+            await handleButtonClick(e, () => {
+                navigateWithTransition('facilities.html');
+            });
+        });
+    }
+    
+    const aiManagerBtn = document.getElementById('aiManagerBtn');
+    if (aiManagerBtn) {
+        aiManagerBtn.addEventListener('click', async (e) => {
             await handleButtonClick(e, () => {
                 navigateWithTransition('ai-manager.html');
+            });
+        });
+    }
+    
+    const personalLifeBtn = document.getElementById('personalLifeBtn');
+    if (personalLifeBtn) {
+        personalLifeBtn.addEventListener('click', async (e) => {
+            await handleButtonClick(e, () => {
+                navigateWithTransition('personalLife.html');
+            });
+        });
+    }
+    
+    const worldLeaguesBtn = document.getElementById('worldLeaguesBtn');
+    if (worldLeaguesBtn) {
+        worldLeaguesBtn.addEventListener('click', async (e) => {
+            await handleButtonClick(e, () => {
+                navigateWithTransition('worldLeagues.html');
+            });
+        });
+    }
+    
+    const seasonOverviewBtn = document.getElementById('seasonOverviewBtn');
+    if (seasonOverviewBtn) {
+        seasonOverviewBtn.addEventListener('click', async (e) => {
+            await handleButtonClick(e, () => {
+                navigateWithTransition('seasonOverview.html');
+            });
+        });
+    }
+    
+    const lifeManagementBtn = document.getElementById('lifeManagementBtn');
+    if (lifeManagementBtn) {
+        lifeManagementBtn.addEventListener('click', async (e) => {
+            await handleButtonClick(e, () => {
+                navigateWithTransition('lifeManagement.html');
             });
         });
     }
 }
 
 /**
- * Handle button clicks with visual feedback
+ * Handle button clicks with optimized visual feedback
  */
 async function handleButtonClick(event, callback) {
     const button = event.currentTarget;
     
-    // Add click animation
-    button.style.transform = 'scale(0.95)';
+    // Simple scale animation without heavy effects
+    button.style.transform = 'scale(0.98)';
     button.style.transition = 'transform 0.1s ease';
-    
-    // Add ripple effect
-    createRippleEffect(event);
     
     setTimeout(async () => {
         button.style.transform = '';
         if (callback) {
             await callback();
         }
-    }, 150);
-}
-
-/**
- * Create ripple effect on button click
- */
-function createRippleEffect(event) {
-    const button = event.currentTarget;
-    const rect = button.getBoundingClientRect();
-    const ripple = document.createElement('div');
-    
-    const size = Math.max(rect.width, rect.height);
-    const x = event.clientX - rect.left - size / 2;
-    const y = event.clientY - rect.top - size / 2;
-    
-    ripple.style.cssText = `
-        position: absolute;
-        width: ${size}px;
-        height: ${size}px;
-        left: ${x}px;
-        top: ${y}px;
-        background: rgba(0, 212, 255, 0.3);
-        border-radius: 50%;
-        transform: scale(0);
-        animation: ripple 0.6s ease-out;
-        pointer-events: none;
-    `;
-    
-    // Add ripple animation keyframes if not exists
-    if (!document.getElementById('ripple-styles')) {
-        const style = document.createElement('style');
-        style.id = 'ripple-styles';
-        style.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(2);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    }
-    
-    button.style.position = 'relative';
-    button.appendChild(ripple);
-    
-    setTimeout(() => {
-        ripple.remove();
-    }, 600);
+    }, 100);
 }
 
 /**
@@ -195,45 +211,84 @@ function navigateWithTransition(url) {
 }
 
 /**
- * Show coming soon notification
+ * Show success message
  */
-function showComingSoon(feature) {
-    // Create notification element
+function showSuccessMessage(message) {
+    showNotification(message, 'success');
+}
+
+/**
+ * Show error message
+ */
+function showErrorMessage(message) {
+    showNotification(message, 'error');
+}
+
+/**
+ * Show notification
+ */
+function showNotification(message, type = 'info') {
+    // Remove existing notifications
+    const existing = document.querySelector('.notification');
+    if (existing) {
+        existing.remove();
+    }
+    
     const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
     notification.style.cssText = `
         position: fixed;
         top: 20px;
         right: 20px;
-        background: rgba(37, 37, 56, 0.95);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(0, 212, 255, 0.3);
-        border-radius: 12px;
-        padding: 16px 24px;
+        background: ${type === 'success' ? 'var(--accent-green)' : type === 'error' ? 'var(--accent-red)' : 'var(--accent-blue)'};
         color: white;
-        font-family: var(--font-primary);
-        font-weight: 500;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        padding: 16px 20px;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
         z-index: 1000;
-        transform: translateX(400px);
-        transition: transform 0.3s ease;
+        max-width: 300px;
+        font-weight: 600;
+        animation: slideInRight 0.3s ease;
     `;
+    notification.textContent = message;
     
-    notification.innerHTML = `
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <span style="font-size: 1.2rem;">🚀</span>
-            <span>${feature} - Coming Soon!</span>
-        </div>
-    `;
+    // Add animation styles if not exists
+    if (!document.getElementById('notification-styles')) {
+        const style = document.createElement('style');
+        style.id = 'notification-styles';
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes slideOutRight {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
     
     document.body.appendChild(notification);
     
+    // Auto remove after 3 seconds
     setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
-    }, 100);
-    
-    setTimeout(() => {
-        notification.style.transform = 'translateX(400px)';
-        setTimeout(() => notification.remove(), 300);
+        notification.style.animation = 'slideOutRight 0.3s ease';
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
     }, 3000);
 }
 
@@ -257,7 +312,7 @@ function initializeMicroInteractions() {
     const infoItems = document.querySelectorAll('.info-grid p');
     infoItems.forEach(item => {
         item.addEventListener('mouseenter', () => {
-            item.style.borderColor = 'rgba(0, 212, 255, 0.4)';
+            item.style.borderColor = 'var(--border-accent)';
         });
         
         item.addEventListener('mouseleave', () => {
@@ -279,16 +334,10 @@ function showCreatePlayerPrompt() {
     // Add create player button
     const createBtn = document.createElement('button');
     createBtn.textContent = '+ Create New Player';
+    createBtn.className = 'primary';
     createBtn.style.cssText = `
-        background: linear-gradient(135deg, var(--accent-success) 0%, var(--accent-primary) 100%);
-        color: white;
-        border: none;
-        padding: 16px 32px;
-        border-radius: 12px;
-        font-weight: 600;
-        cursor: pointer;
         margin-top: 20px;
-        transition: all 0.3s ease;
+        width: 100%;
     `;
     
     createBtn.addEventListener('click', () => {
@@ -317,11 +366,6 @@ function animateStatBars(stats) {
             setTimeout(() => {
                 const percentage = (value / 100) * 100; // Assuming max is 100
                 statFill.style.width = `${Math.min(percentage, 100)}%`;
-                
-                // Add glow effect for high stats
-                if (value > 85) {
-                    statFill.style.boxShadow = '0 0 10px rgba(0, 212, 255, 0.5)';
-                }
             }, index * 200); // Stagger animations
         }
     });
@@ -385,3 +429,77 @@ function formatCurrency(value) {
         return `€${value}`;
     }
 }
+
+/**
+ * Initialize language system
+ */
+async function initializeLanguageSystem() {
+    try {
+        // Get available languages
+        const availableLanguages = await window.footballAPI.getAvailableLanguages();
+        const currentLanguage = await window.footballAPI.getCurrentLanguage();
+        
+        // Populate language selector
+        const languageSelect = document.getElementById('languageSelect');
+        if (languageSelect) {
+            availableLanguages.forEach(lang => {
+                const option = document.createElement('option');
+                option.value = lang.code;
+                option.textContent = `${lang.flag} ${lang.name}`;
+                if (lang.code === currentLanguage) {
+                    option.selected = true;
+                }
+                languageSelect.appendChild(option);
+            });
+        }
+        
+        // Apply current language translations
+        await applyTranslations();
+        
+    } catch (error) {
+        console.error('Error initializing language system:', error);
+    }
+}
+
+/**
+ * Handle language change
+ */
+async function changeLanguage() {
+    const languageSelect = document.getElementById('languageSelect');
+    const selectedLanguage = languageSelect.value;
+    
+    try {
+        await window.footballAPI.setLanguage(selectedLanguage);
+        await applyTranslations();
+        
+        // Show language change notification
+        showSuccessMessage(`Language changed successfully!`);
+        
+    } catch (error) {
+        console.error('Error changing language:', error);
+        showErrorMessage('Failed to change language. Please try again.');
+    }
+}
+
+/**
+ * Apply translations to the current page
+ */
+async function applyTranslations() {
+    try {
+        const translations = await window.footballAPI.getAllTranslations();
+        
+        // Update translatable elements
+        document.querySelectorAll('[data-translate]').forEach(element => {
+            const key = element.getAttribute('data-translate');
+            if (translations[key]) {
+                element.textContent = translations[key];
+            }
+        });
+        
+    } catch (error) {
+        console.error('Error applying translations:', error);
+    }
+}
+
+// Make functions globally available
+window.changeLanguage = changeLanguage;

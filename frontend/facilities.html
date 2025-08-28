@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facility Management - Football Life Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <div class="dashboard-container facilities-dashboard">
+        <div class="dashboard-header">
+            <h1>🏟️ Facility Management</h1>
+            <button id="backBtn" class="back-button">
+                <span class="btn-icon">←</span>
+                <span class="btn-text">Back to Dashboard</span>
+            </button>
+        </div>
+
+        <!-- Facility Overview -->
+        <div class="analytics-section">
+            <h2>📊 Facility Overview</h2>
+            <div class="facility-overview-grid">
+                <div class="facility-summary-card">
+                    <div class="facility-icon">🏋️</div>
+                    <div class="facility-content">
+                        <h3 id="trainingLevel">Level 1</h3>
+                        <p>Training Center</p>
+                        <div class="facility-benefit">+5% Development</div>
+                    </div>
+                </div>
+                <div class="facility-summary-card">
+                    <div class="facility-icon">🏟️</div>
+                    <div class="facility-content">
+                        <h3 id="stadiumLevel">Level 1</h3>
+                        <p>Stadium</p>
+                        <div class="facility-benefit">+3% Morale</div>
+                    </div>
+                </div>
+                <div class="facility-summary-card">
+                    <div class="facility-icon">🏥</div>
+                    <div class="facility-content">
+                        <h3 id="medicalLevel">Level 1</h3>
+                        <p>Medical Center</p>
+                        <div class="facility-benefit">+10% Recovery</div>
+                    </div>
+                </div>
+                <div class="facility-summary-card">
+                    <div class="facility-icon">🔬</div>
+                    <div class="facility-content">
+                        <h3 id="analysisLevel">Level 1</h3>
+                        <p>Analysis Center</p>
+                        <div class="facility-benefit">+5% Intelligence</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Training Center -->
+        <div class="analytics-section">
+            <h2>🏋️ Training Center</h2>
+            <div class="facility-detail-grid">
+                <div class="facility-image-container">
+                    <div class="facility-image training-center" id="trainingCenterImage">
+                        <div class="facility-level-badge">Level <span id="trainingCenterLevel">1</span></div>
+                    </div>
+                </div>
+                <div class="facility-details">
+                    <h3>Training Facilities</h3>
+                    <p class="facility-description" id="trainingCenterDescription">
+                        Basic training equipment and facilities for player development.
+                    </p>
+                    <div class="facility-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Development Bonus:</span>
+                            <span class="stat-value" id="trainingDevBonus">+5%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Training Efficiency:</span>
+                            <span class="stat-value" id="trainingEfficiency">+10%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Maintenance Cost:</span>
+                            <span class="stat-value" id="trainingMaintenance">€2,000/month</span>
+                        </div>
+                    </div>
+                    <div class="upgrade-section">
+                        <button class="upgrade-btn" onclick="showUpgradeModal('training')" id="upgradeTrainingBtn">
+                            <span class="btn-icon">⬆️</span>
+                            <span class="btn-text">Upgrade Training Center</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stadium -->
+        <div class="analytics-section">
+            <h2>🏟️ Stadium</h2>
+            <div class="facility-detail-grid">
+                <div class="facility-image-container">
+                    <div class="facility-image stadium" id="stadiumImage">
+                        <div class="facility-level-badge">Level <span id="stadiumLevelBadge">1</span></div>
+                    </div>
+                </div>
+                <div class="facility-details">
+                    <h3>Stadium Facilities</h3>
+                    <p class="facility-description" id="stadiumDescription">
+                        Basic stadium with standard amenities for home matches.
+                    </p>
+                    <div class="facility-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Morale Bonus:</span>
+                            <span class="stat-value" id="stadiumMoraleBonus">+3%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Capacity:</span>
+                            <span class="stat-value" id="stadiumCapacity">15,000</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Revenue Boost:</span>
+                            <span class="stat-value" id="stadiumRevenue">+5%</span>
+                        </div>
+                    </div>
+                    <div class="upgrade-section">
+                        <button class="upgrade-btn" onclick="showUpgradeModal('stadium')" id="upgradeStadiumBtn">
+                            <span class="btn-icon">⬆️</span>
+                            <span class="btn-text">Upgrade Stadium</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Medical Center -->
+        <div class="analytics-section">
+            <h2>🏥 Medical Center</h2>
+            <div class="facility-detail-grid">
+                <div class="facility-image-container">
+                    <div class="facility-image medical-center" id="medicalCenterImage">
+                        <div class="facility-level-badge">Level <span id="medicalCenterLevel">1</span></div>
+                    </div>
+                </div>
+                <div class="facility-details">
+                    <h3>Medical Facilities</h3>
+                    <p class="facility-description" id="medicalCenterDescription">
+                        Basic medical equipment for injury treatment and prevention.
+                    </p>
+                    <div class="facility-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Recovery Speed:</span>
+                            <span class="stat-value" id="medicalRecoveryBonus">+10%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Injury Prevention:</span>
+                            <span class="stat-value" id="medicalPreventionBonus">+5%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Health Monitoring:</span>
+                            <span class="stat-value" id="medicalMonitoring">Basic</span>
+                        </div>
+                    </div>
+                    <div class="upgrade-section">
+                        <button class="upgrade-btn" onclick="showUpgradeModal('medical')" id="upgradeMedicalBtn">
+                            <span class="btn-icon">⬆️</span>
+                            <span class="btn-text">Upgrade Medical Center</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analysis Center -->
+        <div class="analytics-section">
+            <h2>🔬 Analysis Center</h2>
+            <div class="facility-detail-grid">
+                <div class="facility-image-container">
+                    <div class="facility-image analysis-center" id="analysisCenterImage">
+                        <div class="facility-level-badge">Level <span id="analysisCenterLevel">1</span></div>
+                    </div>
+                </div>
+                <div class="facility-details">
+                    <h3>Analysis & Technology</h3>
+                    <p class="facility-description" id="analysisCenterDescription">
+                        Basic performance analysis tools and video equipment.
+                    </p>
+                    <div class="facility-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Intelligence Boost:</span>
+                            <span class="stat-value" id="analysisIntelligenceBonus">+5%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Tactical Analysis:</span>
+                            <span class="stat-value" id="analysisTacticalBonus">+3%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Data Quality:</span>
+                            <span class="stat-value" id="analysisDataQuality">Standard</span>
+                        </div>
+                    </div>
+                    <div class="upgrade-section">
+                        <button class="upgrade-btn" onclick="showUpgradeModal('analysis')" id="upgradeAnalysisBtn">
+                            <span class="btn-icon">⬆️</span>
+                            <span class="btn-text">Upgrade Analysis Center</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Equipment & Resources -->
+        <div class="analytics-section">
+            <h2>⚽ Equipment & Resources</h2>
+            <div class="equipment-grid">
+                <div class="equipment-category">
+                    <h3>Training Equipment</h3>
+                    <div class="equipment-list" id="trainingEquipment">
+                        <!-- Equipment items will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="equipment-category">
+                    <h3>Match Equipment</h3>
+                    <div class="equipment-list" id="matchEquipment">
+                        <!-- Equipment items will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="equipment-category">
+                    <h3>Recovery Equipment</h3>
+                    <div class="equipment-list" id="recoveryEquipment">
+                        <!-- Equipment items will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Maintenance Schedule -->
+        <div class="analytics-section">
+            <h2>🔧 Maintenance & Operations</h2>
+            <div class="maintenance-grid">
+                <div class="maintenance-schedule">
+                    <h3>Maintenance Schedule</h3>
+                    <div class="schedule-list" id="maintenanceSchedule">
+                        <!-- Maintenance items will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="operational-costs">
+                    <h3>Monthly Operational Costs</h3>
+                    <div class="cost-breakdown" id="operationalCosts">
+                        <!-- Cost breakdown will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upgrade Modal -->
+    <div id="upgradeModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="upgradeModalTitle">Upgrade Facility</h2>
+                <button class="close-btn" onclick="closeUpgradeModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="upgrade-preview" id="upgradePreview">
+                    <!-- Upgrade preview will be populated when modal opens -->
+                </div>
+                <div class="upgrade-comparison">
+                    <div class="current-stats">
+                        <h4>Current Level</h4>
+                        <div id="currentUpgradeStats"></div>
+                    </div>
+                    <div class="upgrade-arrow">→</div>
+                    <div class="new-stats">
+                        <h4>After Upgrade</h4>
+                        <div id="newUpgradeStats"></div>
+                    </div>
+                </div>
+                <div class="upgrade-cost-section">
+                    <div class="cost-breakdown">
+                        <div class="cost-item">
+                            <span>Upgrade Cost:</span>
+                            <span id="upgradeCost">€0</span>
+                        </div>
+                        <div class="cost-item">
+                            <span>Construction Time:</span>
+                            <span id="constructionTime">0 weeks</span>
+                        </div>
+                        <div class="cost-item">
+                            <span>Additional Maintenance:</span>
+                            <span id="additionalMaintenance">€0/month</span>
+                        </div>
+                    </div>
+                    <div class="upgrade-actions">
+                        <button class="cancel-btn" onclick="closeUpgradeModal()">Cancel</button>
+                        <button class="confirm-upgrade-btn" onclick="confirmUpgrade()" id="confirmUpgradeBtn">
+                            <span class="btn-icon">🔨</span>
+                            <span class="btn-text">Start Upgrade</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Equipment Purchase Modal -->
+    <div id="equipmentModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Purchase Equipment</h2>
+                <button class="close-btn" onclick="closeEquipmentModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="equipment-details" id="equipmentDetails">
+                    <!-- Equipment details will be populated when modal opens -->
+                </div>
+                <div class="purchase-actions">
+                    <button class="cancel-btn" onclick="closeEquipmentModal()">Cancel</button>
+                    <button class="purchase-btn" onclick="confirmPurchase()" id="confirmPurchaseBtn">
+                        <span class="btn-icon">💰</span>
+                        <span class="btn-text">Purchase</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="facilities.js"></script>
+</body>
+</html>

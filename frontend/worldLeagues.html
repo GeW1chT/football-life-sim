@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Leagues - Football Life Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <div class="dashboard-container world-leagues-dashboard">
+        <div class="dashboard-header">
+            <h1>🌍 World Leagues</h1>
+            <button id="backBtn" class="back-button">
+                <span class="btn-icon">←</span>
+                <span class="btn-text">Back to Dashboard</span>
+            </button>
+        </div>
+
+        <!-- Continents Overview -->
+        <div class="analytics-section">
+            <h2>🗺️ Continental Overview</h2>
+            <div class="continents-grid" id="continentsGrid">
+                <!-- Continents will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- League Browser -->
+        <div class="analytics-section">
+            <h2>🏆 League Browser</h2>
+            <div class="league-filters">
+                <div class="filter-group">
+                    <label>Continent:</label>
+                    <select id="continentFilter" onchange="filterLeagues()">
+                        <option value="all">All Continents</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Country:</label>
+                    <select id="countryFilter" onchange="filterLeagues()">
+                        <option value="all">All Countries</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Level:</label>
+                    <select id="levelFilter" onchange="filterLeagues()">
+                        <option value="all">All Levels</option>
+                        <option value="1">Top Division (1st)</option>
+                        <option value="2">Second Division (2nd)</option>
+                        <option value="3">Third Division (3rd)</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Min Prestige:</label>
+                    <select id="prestigeFilter" onchange="filterLeagues()">
+                        <option value="0">All Leagues</option>
+                        <option value="50">Above Average (50+)</option>
+                        <option value="70">High Prestige (70+)</option>
+                        <option value="90">Elite (90+)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="leagues-list" id="leaguesList">
+                <!-- Leagues will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Transfer Targets -->
+        <div class="analytics-section">
+            <h2>🎯 Transfer Targets</h2>
+            <div class="transfer-targets-section">
+                <div class="section-header">
+                    <h3>Potential Clubs for Your Level</h3>
+                    <button class="refresh-btn" onclick="refreshTransferTargets()">
+                        <span class="btn-icon">🔄</span>
+                        <span class="btn-text">Refresh Targets</span>
+                    </button>
+                </div>
+                <div class="transfer-targets-grid" id="transferTargets">
+                    <!-- Transfer targets will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- League Details Modal -->
+        <div id="leagueModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="leagueModalTitle">League Details</h2>
+                    <button class="close-btn" onclick="closeLeagueModal()">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="league-info" id="leagueInfo">
+                        <!-- League information will be populated when modal opens -->
+                    </div>
+                    <div class="league-table-container">
+                        <h3>Current Standings</h3>
+                        <div class="league-table" id="leagueTable">
+                            <!-- League table will be populated when modal opens -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Details Modal -->
+        <div id="teamModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="teamModalTitle">Team Details</h2>
+                    <button class="close-btn" onclick="closeTeamModal()">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="team-info" id="teamInfo">
+                        <!-- Team information will be populated when modal opens -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="worldLeagues.js"></script>
+</body>
+</html>

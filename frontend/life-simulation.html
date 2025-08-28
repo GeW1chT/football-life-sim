@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultra-Detailed Life Simulation - Football Life Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container life-simulation-dashboard">
+        <div class="dashboard-header">
+            <h1>🌟 Ultra-Detailed Life Simulation</h1>
+            <button id="backBtn" class="back-button">
+                <span class="btn-icon">←</span>
+                <span class="btn-text">Back to Dashboard</span>
+            </button>
+        </div>
+
+        <!-- Life Phase Navigation -->
+        <div class="life-phase-navigation">
+            <button class="phase-btn active" data-phase="genetics">🧬 Genetics</button>
+            <button class="phase-btn" data-phase="childhood">👶 Childhood</button>
+            <button class="phase-btn" data-phase="elementary">🏫 Elementary</button>
+            <button class="phase-btn" data-phase="preacademy">⚽ Pre-Academy</button>
+            <button class="phase-btn" data-phase="injury">⚕️ Injury System</button>
+            <button class="phase-btn" data-phase="wealth">💰 Wealth Protection</button>
+        </div>
+
+        <!-- Genetics Section -->
+        <div id="genetics-section" class="life-phase-section active">
+            <h2>🧬 Genetic Profile & Family Tree</h2>
+            <div class="analytics-grid">
+                <div class="analytics-card">
+                    <div class="analytics-icon">🏃</div>
+                    <div class="analytics-content">
+                        <h3>Athletic Genes</h3>
+                        <div class="analytics-value" id="athleticGenes">Loading...</div>
+                        <div class="analytics-trend">Fast-twitch muscle fibers</div>
+                    </div>
+                </div>
+                <div class="analytics-card">
+                    <div class="analytics-icon">🧠</div>
+                    <div class="analytics-content">
+                        <h3>Mental Traits</h3>
+                        <div class="analytics-value" id="mentalTraits">Loading...</div>
+                        <div class="analytics-trend">Learning speed & focus</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Childhood Section -->
+        <div id="childhood-section" class="life-phase-section">
+            <h2>👶 Childhood Development (0-6 Years)</h2>
+            <div id="childhoodDetails">Loading...</div>
+        </div>
+
+        <!-- Elementary Section -->
+        <div id="elementary-section" class="life-phase-section">
+            <h2>🏫 Elementary School (6-11 Years)</h2>
+            <div id="elementaryDetails">Loading...</div>
+        </div>
+
+        <!-- Pre-Academy Section -->
+        <div id="preacademy-section" class="life-phase-section">
+            <h2>⚽ Pre-Academy Development (11-14 Years)</h2>
+            <div id="preacademyDetails">Loading...</div>
+        </div>
+
+        <!-- Injury System Section -->
+        <div id="injury-section" class="life-phase-section">
+            <h2>⚕️ Advanced Injury Management</h2>
+            <div id="injuryDetails">Loading...</div>
+        </div>
+
+        <!-- Wealth Protection Section -->
+        <div id="wealth-section" class="life-phase-section">
+            <h2>💰 Wealth Protection Strategies</h2>
+            <div id="wealthDetails">Loading...</div>
+        </div>
+
+        <!-- Create Player Button -->
+        <div class="create-player-section">
+            <h2>Create Player with Ultra-Detailed Life Simulation</h2>
+            <button id="createUltraDetailedPlayer" class="btn-primary btn-lg">
+                🎆 Generate Complete Life History
+            </button>
+            <p class="help-text">
+                This will simulate the player's entire life from birth including genetics, 
+                childhood development, school years, and pre-academy experiences.
+            </p>
+        </div>
+    </div>
+    
+    <script src="life-simulation.js"></script>
+</body>
+</html>

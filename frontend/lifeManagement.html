@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Management - Football Life Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <div class="dashboard-container life-management-dashboard">
+        <div class="dashboard-header">
+            <h1>🌟 Life Management</h1>
+            <button id="backBtn" class="back-button">
+                <span class="btn-icon">←</span>
+                <span class="btn-text">Back to Dashboard</span>
+            </button>
+        </div>
+
+        <!-- Quick Overview -->
+        <div class="analytics-section">
+            <h2>📊 Life Overview</h2>
+            <div class="life-overview-grid">
+                <div class="overview-card financial">
+                    <div class="card-icon">💰</div>
+                    <div class="card-content">
+                        <h3 id="currentWealth">€0</h3>
+                        <p>Current Wealth</p>
+                        <div class="card-detail">
+                            <span id="weeklyIncome">€0/week</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="overview-card relationship">
+                    <div class="card-icon">❤️</div>
+                    <div class="card-content">
+                        <h3 id="relationshipStatus">Single</h3>
+                        <p>Relationship</p>
+                        <div class="card-detail">
+                            <span id="familyCount">0 family members</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="overview-card social">
+                    <div class="card-icon">📱</div>
+                    <div class="card-content">
+                        <h3 id="totalFollowers">0</h3>
+                        <p>Social Media</p>
+                        <div class="card-detail">
+                            <span id="mediaReputation">50% reputation</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="overview-card career">
+                    <div class="card-icon">⚽</div>
+                    <div class="card-content">
+                        <h3 id="careerValue">€0</h3>
+                        <p>Market Value</p>
+                        <div class="card-detail">
+                            <span id="contractStatus">No contract</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="life-tabs">
+            <button class="life-tab active" onclick="switchLifeTab('financial')">💰 Financial</button>
+            <button class="life-tab" onclick="switchLifeTab('relationships')">❤️ Relationships</button>
+            <button class="life-tab" onclick="switchLifeTab('social')">📱 Social Media</button>
+            <button class="life-tab" onclick="switchLifeTab('contracts')">📋 Contracts</button>
+        </div>
+
+        <!-- Financial Management Tab -->
+        <div class="life-tab-content active" id="financial">
+            <div class="tab-section">
+                <h3>💼 Financial Dashboard</h3>
+                <div class="financial-stats-grid">
+                    <div class="financial-stat">
+                        <h4>Weekly Income</h4>
+                        <div class="amount positive" id="weeklyIncomeDetail">€0</div>
+                        <div class="breakdown">
+                            <span>Salary: €<span id="weeklySalary">0</span></span>
+                            <span>Sponsorships: €<span id="weeklySponsorship">0</span></span>
+                        </div>
+                    </div>
+                    
+                    <div class="financial-stat">
+                        <h4>Weekly Expenses</h4>
+                        <div class="amount negative" id="weeklyExpenses">€0</div>
+                        <div class="breakdown">
+                            <span>Living: €<span id="livingExpenses">0</span></span>
+                            <span>Taxes: €<span id="taxes">0</span></span>
+                        </div>
+                    </div>
+                    
+                    <div class="financial-stat">
+                        <h4>Net Weekly</h4>
+                        <div class="amount" id="netWeekly">€0</div>
+                        <div class="projection">
+                            <span>Annual: €<span id="annualProjection">0</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-section">
+                <h3>🤝 Sponsorship Deals</h3>
+                <div class="sponsorship-section">
+                    <div class="active-sponsorships" id="activeSponsorships">
+                        <!-- Active sponsorships will be populated by JavaScript -->
+                    </div>
+                    <div class="available-sponsorships">
+                        <h4>Available Deals</h4>
+                        <div id="availableSponsorships">
+                            <!-- Available sponsorships will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-section">
+                <h3>📈 Investments</h3>
+                <div class="investment-section">
+                    <div class="investment-opportunities" id="investmentOpportunities">
+                        <!-- Investment opportunities will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Relationships Tab -->
+        <div class="life-tab-content" id="relationships">
+            <div class="tab-section">
+                <h3>💕 Romantic Life</h3>
+                <div class="romantic-section" id="romanticSection">
+                    <!-- Romantic relationship content will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="tab-section">
+                <h3>👨‍👩‍👧‍👦 Family</h3>
+                <div class="family-section">
+                    <div class="family-grid" id="familyGrid">
+                        <!-- Family members will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-section">
+                <h3>👥 Social Circle</h3>
+                <div class="social-circle" id="socialCircle">
+                    <!-- Friends and social connections will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Media Tab -->
+        <div class="life-tab-content" id="social">
+            <div class="tab-section">
+                <h3>📊 Social Media Stats</h3>
+                <div class="social-stats-grid">
+                    <div class="platform-stat instagram">
+                        <div class="platform-icon">📷</div>
+                        <div class="platform-info">
+                            <h4>Instagram</h4>
+                            <div class="followers" id="instagramFollowers">0 followers</div>
+                            <div class="engagement">Engagement: <span id="instagramEngagement">0%</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="platform-stat twitter">
+                        <div class="platform-icon">🐦</div>
+                        <div class="platform-info">
+                            <h4>Twitter</h4>
+                            <div class="followers" id="twitterFollowers">0 followers</div>
+                            <div class="engagement">Engagement: <span id="twitterEngagement">0%</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="platform-stat tiktok">
+                        <div class="platform-icon">🎵</div>
+                        <div class="platform-info">
+                            <h4>TikTok</h4>
+                            <div class="followers" id="tiktokFollowers">0 followers</div>
+                            <div class="engagement">Engagement: <span id="tiktokEngagement">0%</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-section">
+                <h3>📝 Create Content</h3>
+                <div class="content-creation">
+                    <div class="post-options">
+                        <select id="platformSelect">
+                            <option value="instagram">Instagram</option>
+                            <option value="twitter">Twitter</option>
+                            <option value="tiktok">TikTok</option>
+                        </select>
+                        
+                        <select id="contentTypeSelect">
+                            <option value="training_video">Training Video</option>
+                            <option value="family_photo">Family Photo</option>
+                            <option value="luxury_lifestyle">Luxury Lifestyle</option>
+                            <option value="charity_work">Charity Work</option>
+                            <option value="controversial_opinion">Controversial Opinion</option>
+                            <option value="sponsored_content">Sponsored Content</option>
+                        </select>
+                        
+                        <button id="postContentBtn" class="action-btn primary">
+                            <span class="btn-icon">📤</span>
+                            <span class="btn-text">Post Content</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-section">
+                <h3>🎤 Media Relations</h3>
+                <div class="media-section">
+                    <div class="media-stats">
+                        <div class="media-stat">
+                            <h4>Media Reputation</h4>
+                            <div class="reputation-bar">
+                                <div class="reputation-fill" id="reputationBar"></div>
+                            </div>
+                            <span id="reputationValue">50%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="interview-section">
+                        <h4>Interview Opportunity</h4>
+                        <div class="interview-options">
+                            <select id="interviewTopic">
+                                <option value="recent_performance">Recent Performance</option>
+                                <option value="transfer_rumors">Transfer Rumors</option>
+                                <option value="personal_life">Personal Life</option>
+                                <option value="team_dynamics">Team Dynamics</option>
+                            </select>
+                            
+                            <select id="interviewApproach">
+                                <option value="honest">Honest</option>
+                                <option value="diplomatic">Diplomatic</option>
+                                <option value="controversial">Controversial</option>
+                                <option value="humorous">Humorous</option>
+                            </select>
+                            
+                            <button id="giveInterviewBtn" class="action-btn secondary">
+                                <span class="btn-icon">🎤</span>
+                                <span class="btn-text">Give Interview</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contracts Tab -->
+        <div class="life-tab-content" id="contracts">
+            <div class="tab-section">
+                <h3>📋 Current Contract</h3>
+                <div class="current-contract" id="currentContract">
+                    <!-- Current contract details will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="tab-section">
+                <h3>🤝 Agent Management</h3>
+                <div class="agent-section" id="agentSection">
+                    <!-- Agent information will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="tab-section">
+                <h3>💰 Contract Negotiation</h3>
+                <div class="negotiation-section">
+                    <div class="negotiation-form">
+                        <div class="form-group">
+                            <label>Weekly Salary Demand</label>
+                            <input type="number" id="salaryDemand" placeholder="€50,000">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Goal Bonus</label>
+                            <input type="number" id="goalBonus" placeholder="€5,000">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Assist Bonus</label>
+                            <input type="number" id="assistBonus" placeholder="€3,000">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Contract Length (years)</label>
+                            <input type="number" id="contractLength" min="1" max="5" value="3">
+                        </div>
+                        
+                        <button id="negotiateBtn" class="action-btn primary">
+                            <span class="btn-icon">🤝</span>
+                            <span class="btn-text">Negotiate Contract</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Relationship Modal -->
+    <div id="relationshipModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="relationshipModalTitle">Relationship</h2>
+                <button class="close-btn" onclick="closeRelationshipModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div id="relationshipModalContent">
+                    <!-- Relationship content will be populated -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="lifeManagement.js"></script>
+</body>
+</html>

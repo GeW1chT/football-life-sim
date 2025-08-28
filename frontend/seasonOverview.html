@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Season Overview - Football Life Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <div class="dashboard-container season-dashboard">
+        <div class="dashboard-header">
+            <h1>📊 Season Overview</h1>
+            <button id="backBtn" class="back-button">
+                <span class="btn-icon">←</span>
+                <span class="btn-text">Back to Dashboard</span>
+            </button>
+        </div>
+
+        <!-- Season Progress -->
+        <div class="analytics-section">
+            <h2>🏁 Season Progress</h2>
+            <div class="season-progress-card">
+                <div class="progress-header">
+                    <h3 id="seasonTitle">Season 2024/25</h3>
+                    <div class="season-status" id="seasonStatus">Active</div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="seasonProgressBar"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span id="currentWeek">Week 1</span>
+                        <span id="remainingWeeks">37 weeks remaining</span>
+                    </div>
+                </div>
+                <div class="league-info">
+                    <div class="league-badge">
+                        <span id="leagueName">Premier League</span>
+                        <span id="leagueCountry">England</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Player Statistics -->
+        <div class="analytics-section">
+            <h2>⚽ Player Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-card primary">
+                    <div class="stat-icon">⚽</div>
+                    <div class="stat-content">
+                        <h3 id="totalGoals">0</h3>
+                        <p>Goals</p>
+                        <div class="stat-trend">
+                            <span id="goalsPerGame">0.0 per game</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stat-card primary">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-content">
+                        <h3 id="totalAssists">0</h3>
+                        <p>Assists</p>
+                        <div class="stat-trend">
+                            <span id="assistsPerGame">0.0 per game</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stat-card performance">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-content">
+                        <h3 id="averageRating">0.0</h3>
+                        <p>Average Rating</p>
+                        <div class="stat-trend">
+                            <span id="ratingTrend">Excellent</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stat-card secondary">
+                    <div class="stat-icon">👕</div>
+                    <div class="stat-content">
+                        <h3 id="matchesPlayed">0</h3>
+                        <p>Appearances</p>
+                        <div class="stat-trend">
+                            <span id="appearanceRate">0% of games</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Performance -->
+        <div class="analytics-section">
+            <h2>🏆 Team Performance</h2>
+            <div class="team-stats-grid">
+                <div class="team-stat-card">
+                    <h3>League Position</h3>
+                    <div class="position-display">
+                        <span class="position-number" id="leaguePosition">-</span>
+                        <span class="position-suffix">th</span>
+                    </div>
+                    <div class="position-change" id="positionChange">No change</div>
+                </div>
+                
+                <div class="team-stat-card">
+                    <h3>Points</h3>
+                    <div class="points-display">
+                        <span class="points-number" id="teamPoints">0</span>
+                        <span class="points-label">pts</span>
+                    </div>
+                    <div class="points-per-game">
+                        <span id="pointsPerGame">0.0 per game</span>
+                    </div>
+                </div>
+                
+                <div class="team-record">
+                    <h3>Team Record</h3>
+                    <div class="record-stats">
+                        <div class="record-item wins">
+                            <span id="teamWins">0</span>
+                            <label>W</label>
+                        </div>
+                        <div class="record-item draws">
+                            <span id="teamDraws">0</span>
+                            <label>D</label>
+                        </div>
+                        <div class="record-item losses">
+                            <span id="teamLosses">0</span>
+                            <label>L</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Season Objectives -->
+        <div class="analytics-section">
+            <h2>🎯 Season Objectives</h2>
+            <div class="objectives-container" id="objectivesContainer">
+                <!-- Objectives will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Recent Achievements -->
+        <div class="analytics-section">
+            <h2>🏅 Recent Achievements</h2>
+            <div class="achievements-list" id="achievementsList">
+                <!-- Achievements will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Key Matches -->
+        <div class="analytics-section">
+            <h2>⚡ Key Matches</h2>
+            <div class="key-matches-container" id="keyMatchesContainer">
+                <!-- Key matches will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Season Awards -->
+        <div class="analytics-section" id="seasonAwardsSection" style="display: none;">
+            <h2>🏆 Season Awards</h2>
+            <div class="awards-container" id="awardsContainer">
+                <!-- Awards will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="season-actions">
+            <button id="seasonHistoryBtn" class="action-btn secondary">
+                <span class="btn-icon">📜</span>
+                <span class="btn-text">Season History</span>
+            </button>
+            <button id="endSeasonBtn" class="action-btn danger" style="display: none;">
+                <span class="btn-icon">🏁</span>
+                <span class="btn-text">End Season</span>
+            </button>
+            <button id="newSeasonBtn" class="action-btn primary" style="display: none;">
+                <span class="btn-icon">🆕</span>
+                <span class="btn-text">Start New Season</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="seasonOverview.js"></script>
+</body>
+</html>

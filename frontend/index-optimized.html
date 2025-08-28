@@ -213,215 +213,8 @@
         }
     </style>
 </head>
-    <style>
-        body {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 35%, #16213e 100%);
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 20px;
-            min-height: 100vh;
-            color: #ffffff;
-        }
-        
-        .ultra-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .ultra-header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 40px 20px;
-            background: linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 25px;
-        }
-        
-        .ultra-title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, #64ffda, #1de9b6, #00bcd4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(100, 255, 218, 0.3);
-            margin-bottom: 15px;
-            letter-spacing: -2px;
-        }
-        
-        .ultra-subtitle {
-            font-size: 1.3rem;
-            color: #b0bec5;
-            font-weight: 400;
-        }
-        
-        .player-showcase {
-            background: linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(100, 255, 218, 0.2);
-            border-radius: 25px;
-            padding: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .player-info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .info-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .info-label {
-            color: #b0bec5;
-            font-size: 0.9rem;
-            margin-bottom: 5px;
-        }
-        
-        .info-value {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #64ffda;
-        }
-        
-        .stats-section {
-            margin-top: 30px;
-        }
-        
-        .stats-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 25px;
-            color: #ffffff;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-        .stat-item {
-            background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .stat-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .stat-name {
-            font-weight: 600;
-            color: #ffffff;
-        }
-        
-        .stat-value {
-            font-weight: 700;
-            color: #64ffda;
-        }
-        
-        .stat-bar-container {
-            background: rgba(255,255,255,0.1);
-            height: 8px;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        .stat-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #64ffda, #1de9b6);
-            border-radius: 4px;
-            transition: width 0.6s ease;
-        }
-        
-        .action-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
-        
-        .action-btn {
-            background: linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 25px 20px;
-            color: #ffffff;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            min-height: 120px;
-            justify-content: center;
-        }
-        
-        .action-btn:hover {
-            transform: translateY(-8px);
-            border-color: rgba(100, 255, 218, 0.3);
-            box-shadow: 0 20px 40px rgba(100, 255, 218, 0.1);
-            background: linear-gradient(145deg, rgba(100, 255, 218, 0.1) 0%, rgba(29, 233, 182, 0.05) 100%);
-        }
-        
-        .btn-icon {
-            font-size: 2.5rem;
-            color: #64ffda;
-        }
-        
-        .btn-text {
-            font-size: 1rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-        
-        .language-selector {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 10px 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .language-selector select {
-            background: transparent;
-            border: none;
-            color: #ffffff;
-            font-weight: 500;
-        }
-        
-        @media (max-width: 768px) {
-            .ultra-title {
-                font-size: 2.5rem;
-            }
-            
-            .action-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-    </style>
-</head>
 <body>
-    <div class="ultra-container">
+    <div class="container">
         <div class="language-selector">
             <i class="fas fa-globe"></i>
             <select id="languageSelect" onchange="changeLanguage()">
@@ -429,21 +222,21 @@
             </select>
         </div>
         
-        <header class="ultra-header">
-            <h1 class="ultra-title">
+        <header class="header">
+            <h1 class="title">
                 <i class="fas fa-futbol"></i>
                 Football Life Simulator
             </h1>
-            <p class="ultra-subtitle">Experience the ultimate football career journey</p>
+            <p class="subtitle">Experience the ultimate football career journey</p>
         </header>
         
-        <div class="player-showcase">
-            <h2 data-translate="player_profile" style="font-size: 2rem; font-weight: 700; margin-bottom: 30px; color: #ffffff;">
-                <i class="fas fa-user" style="color: #64ffda; margin-right: 15px;"></i>
+        <div class="player-section">
+            <h2 data-translate="player_profile" style="font-size: 1.6rem; font-weight: 600; margin-bottom: 20px; color: #ffffff;">
+                <i class="fas fa-user" style="color: #64ffda; margin-right: 10px;"></i>
                 Player Profile
             </h2>
             
-            <div class="player-info-grid">
+            <div class="info-grid">
                 <div class="info-card">
                     <div class="info-label" data-translate="name">Name</div>
                     <div class="info-value" id="playerName">Loading...</div>
@@ -472,7 +265,7 @@
             
             <div class="stats-section">
                 <h3 class="stats-title">
-                    <i class="fas fa-chart-line" style="color: #64ffda; margin-right: 15px;"></i>
+                    <i class="fas fa-chart-line" style="color: #64ffda; margin-right: 10px;"></i>
                     Player Statistics
                 </h3>
                 
@@ -600,31 +393,68 @@
                 <div class="btn-icon"><i class="fas fa-heart"></i></div>
                 <div class="btn-text">Life Management</div>
             </button>
+            
+            <button class="action-btn" id="wealthManagementBtn">
+                <div class="btn-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="btn-text">Wealth Management</div>
+            </button>
         </div>
     </div>
     
     <script src="renderer.js"></script>
     <script>
-        // Enhanced stat bar animation
+        // Optimized stat bar animation
         function updateStatBars() {
             document.querySelectorAll('.stat-bar').forEach(bar => {
                 const statName = bar.getAttribute('data-stat');
-                const statValue = document.getElementById('stat' + statName.charAt(0).toUpperCase() + statName.slice(1)).textContent;
-                const percentage = parseInt(statValue) || 0;
-                setTimeout(() => {
-                    bar.style.width = percentage + '%';
-                }, 500);
+                const statElement = document.getElementById('stat' + statName.charAt(0).toUpperCase() + statName.slice(1));
+                if (statElement) {
+                    const statValue = statElement.textContent;
+                    const percentage = parseInt(statValue) || 0;
+                    setTimeout(() => {
+                        bar.style.width = percentage + '%';
+                    }, 200);
+                }
             });
         }
         
-        // Call updateStatBars when player data is loaded
-        const originalLoadPlayer = window.loadPlayer;
-        if (typeof originalLoadPlayer === 'function') {
-            window.loadPlayer = function() {
-                originalLoadPlayer();
-                setTimeout(updateStatBars, 1000);
-            };
-        }
+        // Load player data efficiently
+        window.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const player = await window.electronAPI.getPlayerInfo();
+                if (player) {
+                    // Update player info efficiently
+                    const updates = {
+                        'playerName': player.name || 'Unknown',
+                        'playerAge': player.age || '--',
+                        'playerTeam': player.currentTeam || 'Free Agent',
+                        'playerPosition': player.position || '--',
+                        'playerValue': '€' + (player.marketValue || 0).toLocaleString(),
+                        'playerReputation': player.reputation || 'Unknown',
+                        'statSpeed': player.attributes?.speed || '--',
+                        'statShooting': player.attributes?.shooting || '--',
+                        'statPassing': player.attributes?.passing || '--',
+                        'statDefense': player.attributes?.defense || '--',
+                        'statStamina': player.attributes?.stamina || '--',
+                        'statIntelligence': player.attributes?.intelligence || '--'
+                    };
+                    
+                    Object.entries(updates).forEach(([id, value]) => {
+                        const element = document.getElementById(id);
+                        if (element) element.textContent = value;
+                    });
+                    
+                    setTimeout(updateStatBars, 300);
+                }
+            } catch (error) {
+                console.error('Error loading player:', error);
+            }
+            
+            // Add click handlers for buttons
+            document.getElementById('wealthManagementBtn')?.addEventListener('click', () => {
+                window.location.href = 'wealthManagement.html';
+            });
+        });
     </script>
 </body>
 </html>

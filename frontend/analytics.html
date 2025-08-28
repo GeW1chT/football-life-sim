@@ -5,86 +5,229 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Player Analytics - Football Life Simulator</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            font-family: 'Inter', system-ui, sans-serif;
+            margin: 0;
+            padding: 15px;
+            min-height: 100vh;
+            color: #ffffff;
+        }
+        
+        .analytics-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+        }
+        
+        .analytics-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #64ffda, #1de9b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .back-btn {
+            background: linear-gradient(45deg, #64ffda, #1de9b6);
+            color: #000;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-1px);
+        }
+        
+        .analytics-section {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-title i {
+            color: #64ffda;
+        }
+        
+        .performance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+        
+        .stat-card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(100, 255, 218, 0.3);
+        }
+        
+        .stat-icon {
+            font-size: 2.5rem;
+            color: #64ffda;
+            margin-bottom: 12px;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            color: #b0bec5;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .stat-trend {
+            background: linear-gradient(45deg, #4caf50, #81c784);
+            color: #000;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .analytics-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="dashboard-container analytics-dashboard">
-        <div class="dashboard-header">
-            <h1>📊 Player Analytics Dashboard</h1>
-            <button id="backBtn" class="back-button">
-                <span class="btn-icon">←</span>
-                <span class="btn-text">Back to Dashboard</span>
+    <div class="analytics-container">
+        <header class="header">
+            <h1 class="analytics-title">
+                <i class="fas fa-chart-line"></i>
+                Player Analytics Dashboard
+            </h1>
+            <button class="back-btn" onclick="window.location.href='index.html'">
+                <i class="fas fa-arrow-left"></i>
+                Back to Dashboard
             </button>
-        </div>
+        </header>
 
         <!-- Performance Overview -->
         <div class="analytics-section">
-            <h2>🎯 Performance Overview</h2>
+            <h2 class="section-title">
+                <i class="fas fa-target"></i>
+                Performance Overview
+            </h2>
             <div class="performance-grid">
                 <div class="stat-card">
-                    <div class="stat-icon">⚽</div>
-                    <div class="stat-content">
-                        <h3 id="totalGoals">0</h3>
-                        <p>Total Goals</p>
-                        <div class="stat-trend" id="goalsTrend">+0</div>
-                    </div>
+                    <div class="stat-icon"><i class="fas fa-futbol"></i></div>
+                    <div class="stat-value" id="totalGoals">0</div>
+                    <div class="stat-label">Total Goals</div>
+                    <div class="stat-trend" id="goalsTrend">+0</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">🎯</div>
-                    <div class="stat-content">
-                        <h3 id="totalAssists">0</h3>
-                        <p>Total Assists</p>
-                        <div class="stat-trend" id="assistsTrend">+0</div>
-                    </div>
+                    <div class="stat-icon"><i class="fas fa-bullseye"></i></div>
+                    <div class="stat-value" id="totalAssists">0</div>
+                    <div class="stat-label">Total Assists</div>
+                    <div class="stat-trend" id="assistsTrend">+0</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">🏆</div>
-                    <div class="stat-content">
-                        <h3 id="winRate">0%</h3>
-                        <p>Win Rate</p>
-                        <div class="stat-trend" id="winRateTrend">+0%</div>
-                    </div>
+                    <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+                    <div class="stat-value" id="winRate">0%</div>
+                    <div class="stat-label">Win Rate</div>
+                    <div class="stat-trend" id="winRateTrend">+0%</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">💰</div>
-                    <div class="stat-content">
-                        <h3 id="marketValue">€0</h3>
-                        <p>Market Value</p>
-                        <div class="stat-trend" id="valueTrend">+€0</div>
-                    </div>
+                    <div class="stat-icon"><i class="fas fa-coins"></i></div>
+                    <div class="stat-value" id="marketValue">€0</div>
+                    <div class="stat-label">Market Value</div>
+                    <div class="stat-trend" id="valueTrend">+€0</div>
                 </div>
             </div>
         </div>
 
         <!-- Form & Morale -->
         <div class="analytics-section">
-            <h2>📈 Current Form & Status</h2>
+            <h2 class="section-title">
+                <i class="fas fa-chart-line"></i>
+                Current Form & Status
+            </h2>
             <div class="form-grid">
-                <div class="form-card">
-                    <h3>Current Form</h3>
-                    <div class="form-meter">
-                        <div class="form-fill" id="formFill"></div>
-                        <span class="form-value" id="formValue">7/10</span>
+                <div class="form-card-ultra">
+                    <h3 style="color: #ffffff; margin-bottom: 20px;">Current Form</h3>
+                    <div class="form-meter-ultra">
+                        <div class="form-fill-ultra" id="formFill" style="width: 70%;"></div>
                     </div>
-                    <p class="form-description" id="formDescription">Good Form</p>
+                    <div style="text-align: center; margin-top: 15px;">
+                        <span style="font-size: 1.5rem; font-weight: 700; color: #64ffda;" id="formValue">7/10</span>
+                        <p style="color: #b0bec5; margin-top: 5px;" id="formDescription">Good Form</p>
+                    </div>
                 </div>
-                <div class="form-card">
-                    <h3>Morale</h3>
-                    <div class="form-meter morale-meter">
-                        <div class="form-fill" id="moraleFill"></div>
-                        <span class="form-value" id="moraleValue">8/10</span>
+                <div class="form-card-ultra">
+                    <h3 style="color: #ffffff; margin-bottom: 20px;">Morale</h3>
+                    <div class="form-meter-ultra">
+                        <div class="form-fill-ultra" id="moraleFill" style="width: 80%; background: linear-gradient(90deg, #ff6b6b, #feca57);"></div>
                     </div>
-                    <p class="form-description" id="moraleDescription">High Morale</p>
+                    <div style="text-align: center; margin-top: 15px;">
+                        <span style="font-size: 1.5rem; font-weight: 700; color: #64ffda;" id="moraleValue">8/10</span>
+                        <p style="color: #b0bec5; margin-top: 5px;" id="moraleDescription">High Morale</p>
+                    </div>
                 </div>
-                <div class="form-card">
-                    <h3>Physical Condition</h3>
-                    <div class="condition-status" id="conditionStatus">
-                        <div class="condition-icon">💪</div>
-                        <div class="condition-text">Excellent</div>
+                <div class="form-card-ultra">
+                    <h3 style="color: #ffffff; margin-bottom: 20px;">Physical Condition</h3>
+                    <div style="text-align: center; margin: 20px 0;" id="conditionStatus">
+                        <div style="font-size: 3rem; color: #64ffda; margin-bottom: 10px;"><i class="fas fa-dumbbell"></i></div>
+                        <div style="font-size: 1.3rem; font-weight: 600; color: #ffffff;">Excellent</div>
                     </div>
-                    <div class="stamina-bar">
-                        <div class="stamina-fill" id="staminaFill"></div>
+                    <div class="form-meter-ultra">
+                        <div class="form-fill-ultra" id="staminaFill" style="width: 90%; background: linear-gradient(90deg, #4caf50, #81c784);"></div>
                     </div>
                 </div>
             </div>

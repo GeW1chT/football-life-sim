@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wealth Management & Lifestyle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 15px;
+        }
+
+        .title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #64ffda, #1de9b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 5px;
+        }
+
+        .nav-tab {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            color: #b0bec5;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(45deg, #64ffda, #1de9b6);
+            color: #000;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .section-card {
+            background: rgba(255,255,255,0.08);
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #64ffda;
+        }
+
+        .insurance-item, .lifestyle-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .purchase-btn {
+            background: linear-gradient(45deg, #64ffda, #1de9b6);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.1);
+            color: #ffffff;
+            padding: 10px 15px;
+            border-radius: 10px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back
+    </a>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Wealth Management & Lifestyle</h1>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('insurance')">Insurance</button>
+            <button class="nav-tab" onclick="showTab('lifestyle')">Lifestyle</button>
+            <button class="nav-tab" onclick="showTab('charity')">Charity</button>
+        </div>
+
+        <div id="insurance" class="tab-content active">
+            <div class="section-grid">
+                <div class="section-card">
+                    <h3 class="section-title">Life Insurance</h3>
+                    <div id="lifeInsuranceGrid"></div>
+                </div>
+                <div class="section-card">
+                    <h3 class="section-title">Career Protection</h3>
+                    <div id="careerInsuranceGrid"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="lifestyle" class="tab-content">
+            <div class="section-grid">
+                <div class="section-card">
+                    <h3 class="section-title">Luxury Residences</h3>
+                    <div id="residenceGrid"></div>
+                </div>
+                <div class="section-card">
+                    <h3 class="section-title">Personal Staff</h3>
+                    <div id="staffGrid"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="charity" class="tab-content">
+            <div class="section-card">
+                <h3 class="section-title">Charitable Foundation</h3>
+                <div id="foundationGrid"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentPlayer = null;
+        let insuranceData = null;
+        let lifestyleData = null;
+        let charitableData = null;
+
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        async function loadData() {
+            try {
+                currentPlayer = await window.electronAPI.getPlayerInfo();
+                insuranceData = await window.electronAPI.getInsuranceOptions();
+                lifestyleData = await window.electronAPI.getLifestyleOptions();
+                charitableData = await window.electronAPI.getCharitableOptions();
+
+                populateInsuranceOptions();
+                populateLifestyleOptions();
+                populateCharitableOptions();
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
+        }
+
+        function populateInsuranceOptions() {
+            if (!insuranceData) return;
+
+            // Life Insurance
+            const lifeGrid = document.getElementById('lifeInsuranceGrid');
+            if (lifeGrid && insuranceData.lifeInsurance) {
+                lifeGrid.innerHTML = '';
+                insuranceData.lifeInsurance.available.forEach(insurance => {
+                    const div = document.createElement('div');
+                    div.className = 'insurance-item';
+                    div.innerHTML = `
+                        <h4>${insurance.type}</h4>
+                        <p>Coverage: €${insurance.coverage.toLocaleString()}</p>
+                        <p>Premium: €${insurance.monthlyPremium}/month</p>
+                        <button class="purchase-btn" onclick="purchaseInsurance('${insurance.id}')">
+                            Purchase
+                        </button>
+                    `;
+                    lifeGrid.appendChild(div);
+                });
+            }
+
+            // Career Insurance
+            const careerGrid = document.getElementById('careerInsuranceGrid');
+            if (careerGrid && insuranceData.careerInsurance) {
+                careerGrid.innerHTML = '';
+                insuranceData.careerInsurance.available.forEach(insurance => {
+                    const div = document.createElement('div');
+                    div.className = 'insurance-item';
+                    div.innerHTML = `
+                        <h4>${insurance.type}</h4>
+                        <p>Coverage: €${insurance.coverage.toLocaleString()}</p>
+                        <p>Premium: €${insurance.monthlyPremium}/month</p>
+                        <button class="purchase-btn" onclick="purchaseInsurance('${insurance.id}')">
+                            Purchase
+                        </button>
+                    `;
+                    careerGrid.appendChild(div);
+                });
+            }
+        }
+
+        function populateLifestyleOptions() {
+            if (!lifestyleData) return;
+
+            // Residences
+            const residenceGrid = document.getElementById('residenceGrid');
+            if (residenceGrid && lifestyleData.housing?.primaryResidence?.available) {
+                residenceGrid.innerHTML = '';
+                lifestyleData.housing.primaryResidence.available.forEach(residence => {
+                    const div = document.createElement('div');
+                    div.className = 'lifestyle-item';
+                    div.innerHTML = `
+                        <h4>${residence.type}</h4>
+                        <p>Cost: €${residence.cost.toLocaleString()}</p>
+                        <p>Location: ${residence.location}</p>
+                        <p>Prestige: +${residence.prestigeValue}</p>
+                        <button class="purchase-btn" onclick="purchaseResidence('${residence.id}')">
+                            Purchase
+                        </button>
+                    `;
+                    residenceGrid.appendChild(div);
+                });
+            }
+
+            // Staff
+            const staffGrid = document.getElementById('staffGrid');
+            if (staffGrid && lifestyleData.housing?.staff?.available) {
+                staffGrid.innerHTML = '';
+                lifestyleData.housing.staff.available.forEach(staff => {
+                    const div = document.createElement('div');
+                    div.className = 'lifestyle-item';
+                    div.innerHTML = `
+                        <h4>${staff.type}</h4>
+                        <p>Cost: €${staff.monthlyCost}/month</p>
+                        <ul>
+                            ${staff.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
+                        </ul>
+                        <button class="purchase-btn" onclick="hireStaff('${staff.id}')">
+                            Hire
+                        </button>
+                    `;
+                    staffGrid.appendChild(div);
+                });
+            }
+        }
+
+        function populateCharitableOptions() {
+            if (!charitableData) return;
+
+            const foundationGrid = document.getElementById('foundationGrid');
+            if (foundationGrid && charitableData.establishment?.available) {
+                foundationGrid.innerHTML = '';
+                charitableData.establishment.available.forEach(foundation => {
+                    const div = document.createElement('div');
+                    div.className = 'lifestyle-item';
+                    div.innerHTML = `
+                        <h4>${foundation.type}</h4>
+                        <p>Setup Cost: €${foundation.setupCost.toLocaleString()}</p>
+                        <p>Annual Giving: €${foundation.minimumAnnualGiving.toLocaleString()}</p>
+                        <button class="purchase-btn" onclick="establishFoundation('${foundation.id}')">
+                            Establish
+                        </button>
+                    `;
+                    foundationGrid.appendChild(div);
+                });
+            }
+        }
+
+        async function purchaseInsurance(insuranceId) {
+            try {
+                const result = await window.electronAPI.purchaseInsurance(insuranceId);
+                if (result.success) {
+                    alert(result.message);
+                    loadData(); // Refresh data
+                } else {
+                    alert(result.message);
+                }
+            } catch (error) {
+                console.error('Error purchasing insurance:', error);
+            }
+        }
+
+        async function purchaseResidence(residenceId) {
+            try {
+                const result = await window.electronAPI.purchaseResidence(residenceId);
+                if (result.success) {
+                    alert(result.message);
+                    loadData();
+                } else {
+                    alert(result.message);
+                }
+            } catch (error) {
+                console.error('Error purchasing residence:', error);
+            }
+        }
+
+        async function hireStaff(staffId) {
+            try {
+                const result = await window.electronAPI.hireStaff(staffId);
+                if (result.success) {
+                    alert(result.message);
+                    loadData();
+                } else {
+                    alert(result.message);
+                }
+            } catch (error) {
+                console.error('Error hiring staff:', error);
+            }
+        }
+
+        async function establishFoundation(foundationType) {
+            try {
+                const result = await window.electronAPI.establishFoundation(foundationType);
+                if (result.success) {
+                    alert(result.message);
+                    loadData();
+                } else {
+                    alert(result.message);
+                }
+            } catch (error) {
+                console.error('Error establishing foundation:', error);
+            }
+        }
+
+        // Load data when page loads
+        window.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+</html>
