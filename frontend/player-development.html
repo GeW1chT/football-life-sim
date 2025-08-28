@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Development - Football Life Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <div class="dashboard-container development-dashboard">
+        <div class="dashboard-header">
+            <h1>🚀 Player Development Center</h1>
+            <button id="backBtn" class="back-button">
+                <span class="btn-icon">←</span>
+                <span class="btn-text">Back to Dashboard</span>
+            </button>
+        </div>
+
+        <!-- Development Overview -->
+        <div class="analytics-section">
+            <h2>📊 Development Overview</h2>
+            <div class="development-overview">
+                <div class="overview-card">
+                    <div class="overview-icon">🎯</div>
+                    <div class="overview-content">
+                        <h3>Current Rating</h3>
+                        <div class="overview-value" id="currentRating">--</div>
+                        <div class="overview-subtext">Overall Player Rating</div>
+                    </div>
+                </div>
+                <div class="overview-card">
+                    <div class="overview-icon">⭐</div>
+                    <div class="overview-content">
+                        <h3>Potential</h3>
+                        <div class="overview-value" id="playerPotential">--</div>
+                        <div class="overview-subtext">Maximum Possible Rating</div>
+                    </div>
+                </div>
+                <div class="overview-card">
+                    <div class="overview-icon">📈</div>
+                    <div class="overview-content">
+                        <h3>Progress</h3>
+                        <div class="overview-value" id="progressPercentage">--%</div>
+                        <div class="overview-subtext">Potential Achieved</div>
+                    </div>
+                </div>
+                <div class="overview-card">
+                    <div class="overview-icon">🔄</div>
+                    <div class="overview-content">
+                        <h3>Development Rate</h3>
+                        <div class="overview-value" id="developmentRate">--</div>
+                        <div class="overview-subtext">Based on Age & Form</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Potential Progress Bar -->
+        <div class="analytics-section">
+            <h2>🎯 Potential Progress</h2>
+            <div class="potential-progress-container">
+                <div class="progress-info">
+                    <div class="progress-labels">
+                        <span class="current-label">Current: <span id="currentProgress">--</span></span>
+                        <span class="potential-label">Potential: <span id="potentialProgress">--</span></span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                            <div class="progress-marker current" id="currentMarker"></div>
+                            <div class="progress-marker potential" id="potentialMarker"></div>
+                        </div>
+                    </div>
+                    <div class="progress-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Remaining Growth:</span>
+                            <span class="stat-value" id="remainingGrowth">-- points</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Estimated Time to Peak:</span>
+                            <span class="stat-value" id="timeToPeak">-- seasons</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Age-Based Development -->
+        <div class="analytics-section">
+            <h2>⏰ Age-Based Development</h2>
+            <div class="age-development-container">
+                <div class="age-timeline">
+                    <div class="timeline-stage past" data-stage="youth">
+                        <div class="stage-age">16-20</div>
+                        <div class="stage-name">Youth</div>
+                        <div class="stage-description">Rapid learning and growth</div>
+                        <div class="stage-multiplier">+50% development</div>
+                    </div>
+                    <div class="timeline-stage current" data-stage="developing" id="currentStage">
+                        <div class="stage-age">21-25</div>
+                        <div class="stage-name">Developing</div>
+                        <div class="stage-description">Skill refinement period</div>
+                        <div class="stage-multiplier">+20% development</div>
+                    </div>
+                    <div class="timeline-stage future" data-stage="peak">
+                        <div class="stage-age">26-30</div>
+                        <div class="stage-name">Peak</div>
+                        <div class="stage-description">Prime performance years</div>
+                        <div class="stage-multiplier">Normal development</div>
+                    </div>
+                    <div class="timeline-stage future" data-stage="veteran">
+                        <div class="stage-age">31-35</div>
+                        <div class="stage-name">Veteran</div>
+                        <div class="stage-description">Experience over physicality</div>
+                        <div class="stage-multiplier">-20% physical</div>
+                    </div>
+                </div>
+                <div class="current-stage-info" id="currentStageInfo">
+                    <!-- Current stage details will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Skill Development Analysis -->
+        <div class="analytics-section">
+            <h2>🎯 Skill Development Analysis</h2>
+            <div class="skill-analysis-container">
+                <div class="skill-chart-container">
+                    <canvas id="skillDevelopmentChart" width="400" height="400"></canvas>
+                </div>
+                <div class="skill-recommendations">
+                    <h3>Development Priorities</h3>
+                    <div class="skill-priority-list" id="skillPriorities">
+                        <!-- Skill priorities will be populated by JavaScript -->
+                    </div>
+                    <h3>Training Focus</h3>
+                    <div class="training-focus-list" id="trainingFocus">
+                        <!-- Training focus areas will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Player Traits -->
+        <div class="analytics-section">
+            <h2>⭐ Player Traits & Specializations</h2>
+            <div class="traits-container">
+                <div class="current-traits">
+                    <h3>Current Traits</h3>
+                    <div class="traits-list" id="currentTraits">
+                        <!-- Current traits will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="available-traits">
+                    <h3>Unlockable Traits</h3>
+                    <div class="traits-list" id="availableTraits">
+                        <!-- Available traits will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="trait-requirements">
+                    <h3>Trait Requirements</h3>
+                    <div class="requirements-list" id="traitRequirements">
+                        <!-- Trait requirements will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Development History -->
+        <div class="analytics-section">
+            <h2>📈 Development History</h2>
+            <div class="development-history-container">
+                <div class="history-chart-container">
+                    <canvas id="developmentHistoryChart" width="800" height="300"></canvas>
+                </div>
+                <div class="history-controls">
+                    <div class="timeframe-selector">
+                        <button class="timeframe-btn active" data-period="season">This Season</button>
+                        <button class="timeframe-btn" data-period="career">Career</button>
+                        <button class="timeframe-btn" data-period="recent">Last 10 Weeks</button>
+                    </div>
+                    <div class="stat-selector">
+                        <label><input type="checkbox" checked data-stat="overall"> Overall Rating</label>
+                        <label><input type="checkbox" data-stat="shooting"> Shooting</label>
+                        <label><input type="checkbox" data-stat="passing"> Passing</label>
+                        <label><input type="checkbox" data-stat="defense"> Defense</label>
+                        <label><input type="checkbox" data-stat="speed"> Speed</label>
+                        <label><input type="checkbox" data-stat="stamina"> Stamina</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Training Optimization -->
+        <div class="analytics-section">
+            <h2>🏋️ Training Optimization</h2>
+            <div class="training-optimization-container">
+                <div class="optimization-results">
+                    <h3>AI-Optimized Training Plan</h3>
+                    <div class="optimization-summary" id="optimizationSummary">
+                        <!-- Optimization summary will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="training-simulator">
+                    <h3>Training Simulator</h3>
+                    <div class="simulator-controls">
+                        <div class="simulator-input">
+                            <label>Weeks to Simulate:</label>
+                            <select id="simulationWeeks">
+                                <option value="4">4 weeks</option>
+                                <option value="8" selected>8 weeks</option>
+                                <option value="12">12 weeks</option>
+                                <option value="24">24 weeks (Half Season)</option>
+                            </select>
+                        </div>
+                        <div class="simulator-input">
+                            <label>Training Focus:</label>
+                            <select id="trainingFocusSelect">
+                                <option value="balanced">Balanced Development</option>
+                                <option value="position">Position-Specific</option>
+                                <option value="weaknesses">Address Weaknesses</option>
+                                <option value="strengths">Enhance Strengths</option>
+                            </select>
+                        </div>
+                        <button id="runSimulationBtn" class="simulation-btn">Run Simulation</button>
+                    </div>
+                    <div class="simulation-results" id="simulationResults" style="display: none;">
+                        <!-- Simulation results will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="player-development.js"></script>
+</body>
+</html>

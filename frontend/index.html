@@ -5,35 +5,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Football Life Simulator</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
     <div class="dashboard-container">
-        <h1>Football Life Simulator</h1>
+        <h1>⚽ Football Life Simulator</h1>
+        
         <div class="player-info">
-            <h2>Player Info</h2>
-            <p><strong>Name:</strong> <span id="playerName"></span></p>
-            <p><strong>Age:</strong> <span id="playerAge"></span></p>
-            <p><strong>Team:</strong> <span id="playerTeam"></span></p>
-            <p><strong>Position:</strong> <span id="playerPosition"></span></p>
-            <p><strong>Reputation:</strong> <span id="playerReputation"></span></p>
+            <h2>👤 Player Profile</h2>
+            <div class="info-grid">
+                <p><strong>Name:</strong> <span id="playerName">Loading...</span></p>
+                <p><strong>Age:</strong> <span id="playerAge">--</span></p>
+                <p><strong>Team:</strong> <span id="playerTeam">Free Agent</span></p>
+                <p><strong>Position:</strong> <span id="playerPosition">--</span></p>
+                <p><strong>Market Value:</strong> <span id="playerValue">€0</span></p>
+                <p><strong>Reputation:</strong> <span id="playerReputation">Unknown</span></p>
+            </div>
         </div>
 
         <div class="player-stats">
-            <h2>Player Stats</h2>
+            <h2>📊 Player Statistics</h2>
             <ul>
-                <li><strong>Speed:</strong> <span id="statSpeed"></span></li>
-                <li><strong>Shooting:</strong> <span id="statShooting"></span></li>
-                <li><strong>Passing:</strong> <span id="statPassing"></span></li>
-                <li><strong>Defense:</strong> <span id="statDefense"></span></li>
-                <li><strong>Stamina:</strong> <span id="statStamina"></span></li>
+                <li>
+                    <div class="stat-info">
+                        <strong>🏃 Speed:</strong> 
+                        <span id="statSpeed">--</span>
+                    </div>
+                    <div class="stat-bar">
+                        <div class="stat-fill" data-stat="speed"></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="stat-info">
+                        <strong>⚽ Shooting:</strong> 
+                        <span id="statShooting">--</span>
+                    </div>
+                    <div class="stat-bar">
+                        <div class="stat-fill" data-stat="shooting"></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="stat-info">
+                        <strong>🎯 Passing:</strong> 
+                        <span id="statPassing">--</span>
+                    </div>
+                    <div class="stat-bar">
+                        <div class="stat-fill" data-stat="passing"></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="stat-info">
+                        <strong>🛡️ Defense:</strong> 
+                        <span id="statDefense">--</span>
+                    </div>
+                    <div class="stat-bar">
+                        <div class="stat-fill" data-stat="defense"></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="stat-info">
+                        <strong>💪 Stamina:</strong> 
+                        <span id="statStamina">--</span>
+                    </div>
+                    <div class="stat-bar">
+                        <div class="stat-fill" data-stat="stamina"></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="stat-info">
+                        <strong>🧠 Intelligence:</strong> 
+                        <span id="statIntelligence">--</span>
+                    </div>
+                    <div class="stat-bar">
+                        <div class="stat-fill" data-stat="intelligence"></div>
+                    </div>
+                </li>
             </ul>
         </div>
         
         <div class="game-actions">
-            <button id="nextWeekBtn">Next Week</button>
-            <button id="transferMarketBtn">Transfer Market</button>
-            <button id="trainingBtn">Training</button>
-            <button id="leagueTableBtn">League Table</button>
+            <button id="nextWeekBtn">
+                <span class="btn-icon">⏭️</span>
+                <span class="btn-text">Next Week</span>
+            </button>
+            <button id="transferMarketBtn">
+                <span class="btn-icon">💰</span>
+                <span class="btn-text">Transfer Market</span>
+            </button>
+            <button id="trainingBtn">
+                <span class="btn-icon">🏋️</span>
+                <span class="btn-text">Training</span>
+            </button>
+            <button id="leagueTableBtn">
+                <span class="btn-icon">🏆</span>
+                <span class="btn-text">League Table</span>
+            </button>
+            <button id="analyticsBtn">
+                <span class="btn-icon">📈</span>
+                <span class="btn-text">Analytics</span>
+            </button>
+            <button id="staffBtn">
+                <span class="btn-icon">🤖</span>
+                <span class="btn-text">AI Manager</span>
+            </button>
         </div>
     </div>
     

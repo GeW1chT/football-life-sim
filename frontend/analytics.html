@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Analytics - Football Life Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <div class="dashboard-container analytics-dashboard">
+        <div class="dashboard-header">
+            <h1>📊 Player Analytics Dashboard</h1>
+            <button id="backBtn" class="back-button">
+                <span class="btn-icon">←</span>
+                <span class="btn-text">Back to Dashboard</span>
+            </button>
+        </div>
+
+        <!-- Performance Overview -->
+        <div class="analytics-section">
+            <h2>🎯 Performance Overview</h2>
+            <div class="performance-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">⚽</div>
+                    <div class="stat-content">
+                        <h3 id="totalGoals">0</h3>
+                        <p>Total Goals</p>
+                        <div class="stat-trend" id="goalsTrend">+0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-content">
+                        <h3 id="totalAssists">0</h3>
+                        <p>Total Assists</p>
+                        <div class="stat-trend" id="assistsTrend">+0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-content">
+                        <h3 id="winRate">0%</h3>
+                        <p>Win Rate</p>
+                        <div class="stat-trend" id="winRateTrend">+0%</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-content">
+                        <h3 id="marketValue">€0</h3>
+                        <p>Market Value</p>
+                        <div class="stat-trend" id="valueTrend">+€0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form & Morale -->
+        <div class="analytics-section">
+            <h2>📈 Current Form & Status</h2>
+            <div class="form-grid">
+                <div class="form-card">
+                    <h3>Current Form</h3>
+                    <div class="form-meter">
+                        <div class="form-fill" id="formFill"></div>
+                        <span class="form-value" id="formValue">7/10</span>
+                    </div>
+                    <p class="form-description" id="formDescription">Good Form</p>
+                </div>
+                <div class="form-card">
+                    <h3>Morale</h3>
+                    <div class="form-meter morale-meter">
+                        <div class="form-fill" id="moraleFill"></div>
+                        <span class="form-value" id="moraleValue">8/10</span>
+                    </div>
+                    <p class="form-description" id="moraleDescription">High Morale</p>
+                </div>
+                <div class="form-card">
+                    <h3>Physical Condition</h3>
+                    <div class="condition-status" id="conditionStatus">
+                        <div class="condition-icon">💪</div>
+                        <div class="condition-text">Excellent</div>
+                    </div>
+                    <div class="stamina-bar">
+                        <div class="stamina-fill" id="staminaFill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Trends -->
+        <div class="analytics-section">
+            <h2>📈 Performance Trends</h2>
+            <div class="trends-container">
+                <div class="trend-chart-container">
+                    <canvas id="performanceTrendChart" width="800" height="300"></canvas>
+                </div>
+                <div class="trend-controls">
+                    <div class="time-selector">
+                        <button class="trend-btn active" data-period="week">Last 10 Weeks</button>
+                        <button class="trend-btn" data-period="month">Last 3 Months</button>
+                        <button class="trend-btn" data-period="season">This Season</button>
+                    </div>
+                    <div class="metric-selector">
+                        <label><input type="checkbox" checked data-metric="goals"> Goals</label>
+                        <label><input type="checkbox" checked data-metric="assists"> Assists</label>
+                        <label><input type="checkbox" checked data-metric="rating"> Performance Rating</label>
+                        <label><input type="checkbox" data-metric="stamina"> Stamina</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Statistics -->
+        <div class="analytics-section">
+            <h2>📋 Career Statistics</h2>
+            <div class="stats-grid">
+                <div class="detailed-stat">
+                    <span class="stat-label">Matches Played</span>
+                    <span class="stat-value" id="matchesPlayed">0</span>
+                </div>
+                <div class="detailed-stat">
+                    <span class="stat-label">Goals Scored</span>
+                    <span class="stat-value" id="goalsScored">0</span>
+                </div>
+                <div class="detailed-stat">
+                    <span class="stat-label">Assists Made</span>
+                    <span class="stat-value" id="assistsMade">0</span>
+                </div>
+                <div class="detailed-stat">
+                    <span class="stat-label">Wins</span>
+                    <span class="stat-value" id="winsCount">0</span>
+                </div>
+                <div class="detailed-stat">
+                    <span class="stat-label">Draws</span>
+                    <span class="stat-value" id="drawsCount">0</span>
+                </div>
+                <div class="detailed-stat">
+                    <span class="stat-label">Losses</span>
+                    <span class="stat-value" id="lossesCount">0</span>
+                </div>
+                <div class="detailed-stat">
+                    <span class="stat-label">Goals per Match</span>
+                    <span class="stat-value" id="goalsPer">0.0</span>
+                </div>
+                <div class="detailed-stat">
+                    <span class="stat-label">Assists per Match</span>
+                    <span class="stat-value" id="assistsPer">0.0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Heat Map Section -->
+        <div class="analytics-section">
+            <h2>🔥 Performance Heat Map</h2>
+            <div class="heatmap-container">
+                <div class="field-container">
+                    <div class="football-field" id="footballField">
+                        <div class="field-line center-line"></div>
+                        <div class="field-line penalty-box-left"></div>
+                        <div class="field-line penalty-box-right"></div>
+                        <div class="field-circle"></div>
+                        <div class="heat-overlay" id="heatOverlay"></div>
+                    </div>
+                    <div class="heat-legend">
+                        <h4>Activity Level</h4>
+                        <div class="legend-gradient">
+                            <span>Low</span>
+                            <div class="gradient-bar"></div>
+                            <span>High</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="heatmap-controls">
+                    <button class="heat-btn active" data-type="all">All Activity</button>
+                    <button class="heat-btn" data-type="goals">Goals</button>
+                    <button class="heat-btn" data-type="assists">Assists</button>
+                    <button class="heat-btn" data-type="passes">Passes</button>
+                    <button class="heat-btn" data-type="tackles">Tackles</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Chart -->
+        <div class="analytics-section">
+            <h2>📊 Attribute Development</h2>
+            <div class="progress-chart">
+                <div class="chart-container">
+                    <canvas id="attributeChart" width="600" height="400"></canvas>
+                </div>
+                <div class="chart-legend">
+                    <div class="legend-item">
+                        <div class="legend-color speed-color"></div>
+                        <span>Speed</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color shooting-color"></div>
+                        <span>Shooting</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color passing-color"></div>
+                        <span>Passing</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color defense-color"></div>
+                        <span>Defense</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color stamina-color"></div>
+                        <span>Stamina</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color intelligence-color"></div>
+                        <span>Intelligence</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Predictive Analytics -->
+        <div class="analytics-section">
+            <h2>🔮 Predictive Analytics</h2>
+            <div class="prediction-grid">
+                <div class="prediction-card">
+                    <h3>🏆 Season Prediction</h3>
+                    <div class="prediction-content">
+                        <div class="prediction-stat">
+                            <span class="stat-label">Expected Goals</span>
+                            <span class="stat-value" id="predictedGoals">12-18</span>
+                        </div>
+                        <div class="prediction-stat">
+                            <span class="stat-label">Expected Assists</span>
+                            <span class="stat-value" id="predictedAssists">6-10</span>
+                        </div>
+                        <div class="prediction-stat">
+                            <span class="stat-label">Market Value Change</span>
+                            <span class="stat-value" id="predictedValue">+15%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="prediction-card">
+                    <h3>📈 Development Areas</h3>
+                    <div class="development-areas" id="developmentAreas">
+                        <!-- Development suggestions will be populated by JS -->
+                    </div>
+                </div>
+                <div class="prediction-card">
+                    <h3>⚠️ Risk Analysis</h3>
+                    <div class="risk-analysis" id="riskAnalysis">
+                        <!-- Risk factors will be populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Metrics -->
+        <div class="analytics-section">
+            <h2>🏅 League Comparison</h2>
+            <div class="comparison-container">
+                <div class="comparison-chart">
+                    <h4>Your Position vs League Average</h4>
+                    <div class="comparison-bars" id="comparisonBars">
+                        <!-- Comparison bars will be populated by JS -->
+                    </div>
+                </div>
+                <div class="ranking-info">
+                    <div class="rank-card">
+                        <h4>Goals Ranking</h4>
+                        <div class="rank-position" id="goalsRank">#5 / 20</div>
+                        <div class="rank-percentile">Top 25%</div>
+                    </div>
+                    <div class="rank-card">
+                        <h4>Assists Ranking</h4>
+                        <div class="rank-position" id="assistsRank">#3 / 20</div>
+                        <div class="rank-percentile">Top 15%</div>
+                    </div>
+                    <div class="rank-card">
+                        <h4>Overall Rating</h4>
+                        <div class="rank-position" id="overallRank">#4 / 20</div>
+                        <div class="rank-percentile">Top 20%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Matches -->
+        <div class="analytics-section">
+            <h2>🏟️ Recent Match History</h2>
+            <div class="match-history" id="matchHistory">
+                <!-- Match history will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Injury History -->
+        <div class="analytics-section" id="injurySection" style="display: none;">
+            <h2>🏥 Injury History</h2>
+            <div class="injury-history" id="injuryHistory">
+                <!-- Injury history will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <script src="analytics.js"></script>
+</body>
+</html>

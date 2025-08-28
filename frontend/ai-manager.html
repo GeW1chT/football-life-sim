@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Manager - Football Life Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <div class="dashboard-container ai-manager-dashboard">
+        <div class="dashboard-header">
+            <h1>🤖 AI Manager Assistant</h1>
+            <button id="backBtn" class="back-button">
+                <span class="btn-icon">←</span>
+                <span class="btn-text">Back to Dashboard</span>
+            </button>
+        </div>
+
+        <!-- AI Analysis Overview -->
+        <div class="analytics-section">
+            <h2>📊 Current Situation Analysis</h2>
+            <div class="analysis-grid">
+                <div class="analysis-card">
+                    <div class="analysis-icon">🎯</div>
+                    <div class="analysis-content">
+                        <h3>Overall Rating</h3>
+                        <div class="analysis-value" id="overallRating">--</div>
+                        <div class="analysis-trend" id="ratingTrend">Calculating...</div>
+                    </div>
+                </div>
+                <div class="analysis-card">
+                    <div class="analysis-icon">📈</div>
+                    <div class="analysis-content">
+                        <h3>Recent Form</h3>
+                        <div class="analysis-value" id="recentForm">--</div>
+                        <div class="analysis-trend" id="formTrend">Analyzing...</div>
+                    </div>
+                </div>
+                <div class="analysis-card">
+                    <div class="analysis-icon">🎲</div>
+                    <div class="analysis-content">
+                        <h3>Development Potential</h3>
+                        <div class="analysis-value" id="devPotential">--</div>
+                        <div class="analysis-trend" id="potentialTrend">Evaluating...</div>
+                    </div>
+                </div>
+                <div class="analysis-card">
+                    <div class="analysis-icon">⚕️</div>
+                    <div class="analysis-content">
+                        <h3>Injury Risk</h3>
+                        <div class="analysis-value" id="injuryRisk">--</div>
+                        <div class="analysis-trend" id="riskTrend">Assessing...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Priority Recommendations -->
+        <div class="analytics-section">
+            <h2>🔥 Priority Recommendations</h2>
+            <div class="recommendations-container" id="priorityRecommendations">
+                <!-- Recommendations will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Tactical Advice -->
+        <div class="analytics-section">
+            <h2>🧭 Tactical Guidance</h2>
+            <div class="tactical-advice-container">
+                <div class="advice-category">
+                    <h3>🎯 Position-Specific Tips</h3>
+                    <div class="advice-list" id="positionAdvice">
+                        <!-- Position advice will be populated -->
+                    </div>
+                </div>
+                <div class="advice-category">
+                    <h3>📊 Performance-Based Advice</h3>
+                    <div class="advice-list" id="performanceAdvice">
+                        <!-- Performance advice will be populated -->
+                    </div>
+                </div>
+                <div class="advice-category">
+                    <h3>⚡ Immediate Actions</h3>
+                    <div class="advice-list" id="immediateActions">
+                        <!-- Immediate actions will be populated -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Training Plan -->
+        <div class="analytics-section">
+            <h2>🏋️ AI-Optimized Training Plan</h2>
+            <div class="training-plan-container">
+                <div class="plan-overview">
+                    <h3>Weekly Training Schedule</h3>
+                    <div class="week-schedule" id="weekSchedule">
+                        <!-- Training schedule will be populated -->
+                    </div>
+                </div>
+                <div class="training-recommendations" id="trainingRecommendations">
+                    <!-- Training recommendations will be populated -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Career Guidance -->
+        <div class="analytics-section">
+            <h2>🎯 Career Development Path</h2>
+            <div class="career-guidance-container">
+                <div class="career-stage">
+                    <h3>Current Career Stage</h3>
+                    <div class="stage-info" id="careerStage">
+                        <!-- Career stage info will be populated -->
+                    </div>
+                </div>
+                <div class="career-timeline">
+                    <h3>Development Timeline</h3>
+                    <div class="timeline-container" id="careerTimeline">
+                        <!-- Career timeline will be populated -->
+                    </div>
+                </div>
+                <div class="career-goals">
+                    <h3>Recommended Goals</h3>
+                    <div class="goals-list" id="careerGoals">
+                        <!-- Career goals will be populated -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transfer Market Advice -->
+        <div class="analytics-section" id="transferAdviceSection" style="display: none;">
+            <h2>💰 Transfer Market Analysis</h2>
+            <div class="transfer-advice-container">
+                <div class="market-analysis">
+                    <h3>Market Position</h3>
+                    <div class="market-info" id="marketAnalysis">
+                        <!-- Market analysis will be populated -->
+                    </div>
+                </div>
+                <div class="transfer-recommendations">
+                    <h3>Transfer Recommendations</h3>
+                    <div class="transfer-list" id="transferRecommendations">
+                        <!-- Transfer recommendations will be populated -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive AI Chat -->
+        <div class="analytics-section">
+            <h2>💬 Ask AI Manager</h2>
+            <div class="ai-chat-container">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="ai-message">
+                        <div class="message-avatar">🤖</div>
+                        <div class="message-content">
+                            <p>Hello! I'm your AI Manager assistant. I've analyzed your current situation and prepared personalized recommendations above. Feel free to ask me any questions about your career development!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-container">
+                    <div class="quick-questions">
+                        <button class="quick-question-btn" data-question="How can I improve my shooting?">
+                            How can I improve my shooting?
+                        </button>
+                        <button class="quick-question-btn" data-question="Should I consider a transfer?">
+                            Should I consider a transfer?
+                        </button>
+                        <button class="quick-question-btn" data-question="What training should I focus on?">
+                            What training should I focus on?
+                        </button>
+                        <button class="quick-question-btn" data-question="How's my career development?">
+                            How's my career development?
+                        </button>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="chatInput" placeholder="Ask me anything about your career..." />
+                        <button id="sendChatBtn">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="ai-manager.js"></script>
+</body>
+</html>
